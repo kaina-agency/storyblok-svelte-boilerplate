@@ -1,11 +1,12 @@
 <script>
-	import { onMount, afterUpdate } from 'svelte'
+	import { afterUpdate } from 'svelte'
 	import { editable } from '../directives'
 
 	export let blok
-	let map, ar
+	let ar = blok.ratio.split('/')[1] / blok.ratio.split('/')[0]
+	let map
 
-	let buildMap = () => {
+	function buildMap() {
 		let base =
 				'https://www.mapquestapi.com/staticmap/v5/map?key=oD74c3NX4siqviStfAxtHtYz2EwvGsVg',
 			locations = '&locations=' + blok.locations.split('\n').join('||'),
@@ -18,10 +19,8 @@
 
 		ar = blok.ratio.split('/')[1] / blok.ratio.split('/')[0]
 		map = base + locations + size + zoom + marker
-		console.log('map loaded')
 	}
 
-	onMount(buildMap)
 	afterUpdate(buildMap)
 </script>
 
@@ -34,7 +33,6 @@
 		display: block;
 		position: relative;
 	}
-
 	.map img {
 		position: absolute;
 		width: 100%;

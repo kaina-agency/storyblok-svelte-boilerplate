@@ -1,47 +1,27 @@
+<script context="module">
+	import client, { defaultRequestConfig as reqConfig } from '../storyblokClient'
+	import getComponent from '../components'
+
+	export async function preload(page, session) {
+		const { slug } = page.params
+
+		const response = await client.get('cdn/stories/home', reqConfig)
+
+		return { story: response.data.story || {} }
+	}
+</script>
+
+<script>
+	export let story = {}
+</script>
+
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>{story.name}</title>
 </svelte:head>
 
-<h1>Great success!</h1>
-
-<figure>
-	<img alt="Borat" src="great-success.png" />
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p>
-	<strong
-		>Try editing this file (src/routes/index.svelte) to test live reloading.</strong
-	>
-</p>
-
-<style>
-	h1,
-	figure,
-	p {
-		text-align: center;
-		margin: 0 auto;
-	}
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-	figure {
-		margin: 0 0 1em 0;
-	}
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-	p {
-		margin: 1em auto;
-	}
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
+{#if story.content.component}
+	<svelte:component
+		this={getComponent(story.content.component)}
+		blok={story.content}
+	/>
+{/if}
