@@ -1,25 +1,28 @@
 <script>
-	import { afterUpdate } from 'svelte'
+	import { onMount, afterUpdate } from 'svelte'
 	import { editable } from '../directives'
 
 	export let blok
-	let map, locations, zoom, marker, size
-	let base =
-		'https://www.mapquestapi.com/staticmap/v5/map?key=oD74c3NX4siqviStfAxtHtYz2EwvGsVg'
-	let ar = blok.ratio.split('/')[1] / blok.ratio.split('/')[0]
+	let map, ar
 
-	afterUpdate(() => {
-		let width = document.querySelector('.map').clientWidth,
+	let buildMap = () => {
+		let base =
+				'https://www.mapquestapi.com/staticmap/v5/map?key=oD74c3NX4siqviStfAxtHtYz2EwvGsVg',
+			locations = '&locations=' + blok.locations.split('\n').join('||'),
+			zoom = '&zoom=' + blok.zoom_level,
+			marker = '&defaultMarker=' + blok.marker_style,
+			width = document.querySelector('.map').clientWidth,
 			height = Math.round(width * ar),
-			twox = window.devicePixelRatio > 1 ? '@2x' : ''
-		size = '&size=' + `${width},${height + twox}`
+			twox = window.devicePixelRatio > 1 ? '@2x' : '',
+			size = '&size=' + `${width},${height + twox}`
 
-		locations = '&locations=' + blok.locations.split('\n').join('||')
 		ar = blok.ratio.split('/')[1] / blok.ratio.split('/')[0]
-		zoom = '&zoom=' + blok.zoom_level
-		marker = '&defaultMarker=' + blok.marker_style
 		map = base + locations + size + zoom + marker
-	})
+		console.log('map loaded')
+	}
+
+	onMount(buildMap)
+	afterUpdate(buildMap)
 </script>
 
 <div class="map" use:editable={blok} style="padding-top: {ar * 100}%">
