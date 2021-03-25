@@ -1,21 +1,23 @@
 import Grid from './Grid.svelte'
 import Teaser from './Teaser.svelte'
+import Map from './Map.svelte'
 import Feature from './Feature.svelte'
 import Page from './Page.svelte'
 import NotFound from './404.svelte'
 
 const Components = {
-  grid: Grid,
-  teaser: Teaser,
-  feature: Feature,
-  page: Page
+	grid: Grid,
+	teaser: Teaser,
+	map: Map,
+	feature: Feature,
+	page: Page,
 }
 
-export default component => {
-  // component does exist
-  if (typeof Components[component] !== "undefined") {
-    return Components[component]
-  }
+export default (component) => {
+	// component does exist
+	if (typeof Components[component] !== 'undefined') {
+		return Components[component]
+	}
 
-  return NotFound
+	return NotFound
 }
