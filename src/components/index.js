@@ -6,6 +6,7 @@ import Grid from './Grid.svelte'
 import Map from './Map.svelte'
 import Page from './Page.svelte'
 import Teaser from './Teaser.svelte'
+import Text from './Text.svelte'
 import Video from './Video.svelte'
 
 const Components = {
@@ -15,6 +16,7 @@ const Components = {
 	Map: Map,
 	Page: Page,
 	Teaser: Teaser,
+	Text: Text,
 	Video: Video,
 }
 
