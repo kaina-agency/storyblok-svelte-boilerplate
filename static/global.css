@@ -2,6 +2,38 @@
 iframe {
 	display: block;
 }
+.colors {
+	box-sizing: border-box;
+	transition: 0.25s;
+	background: var(--color);
+	color: var(--text_color);
+	border: 1px solid var(--border_color);
+}
+.colors:hover {
+	background: var(--hover_color, var(--color));
+	color: var(--hover_text_color, var(--text_color));
+	border: 1px solid var(--hover_border_color, var(--border_color));
+}
+
+/* Button.svelte */
+.button {
+	position: relative;
+	letter-spacing: 1px;
+	font-size: 14px;
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-flex;
+	align-items: center;
+}
+.button svg {
+	fill: currentColor;
+	display: block;
+	height: 1.5em;
+	width: 1.5em;
+}
+.button.pad-icon svg {
+	margin-right: 0.5rem;
+}
 
 /* Calendar.svelte */
 .fc .fc-button {
@@ -17,21 +49,17 @@ iframe {
 	padding: 0 0 !important;
 	color: inherit !important;
 }
-
 .fc .fc-button:not(:hover) {
 	background: transparent !important;
 }
-
 .fc .fc-button:hover,
 .fc .fc-button:focus {
 	background: transparent !important;
 	box-shadow: none !important;
 }
-
 .fc .fc-button:focus {
 	outline: auto !important;
 }
-
 .fc .fc-button:hover:before {
 	content: '';
 	position: absolute;
@@ -43,12 +71,54 @@ iframe {
 	opacity: 0.15;
 }
 
+/* Card.svelte */
+.card {
+	position: relative;
+	text-decoration: unset;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	box-sizing: border-box;
+	transition: 0.25s;
+}
+.card.background .card-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.card-container {
+	flex-grow: 1;
+}
+.card-container.row {
+	display: flex;
+	align-items: center;
+}
+.card-content .text *:first-child {
+	margin-top: 0;
+}
+.card-content .text *:last-child {
+	margin-bottom: 0;
+}
+.card-divider {
+	height: 1px;
+	background: currentColor;
+	opacity: 0.2;
+}
+.card-actions {
+	position: relative;
+	border-width: 0;
+	display: flex;
+}
+
 /* Text.svelte */
 .text {
 	text-justify: inter-word;
-}
-pre {
-	margin: 0;
 }
 code {
 	tab-size: 2;
