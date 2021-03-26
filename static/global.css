@@ -26,6 +26,66 @@ iframe {
 	border: 1px solid var(--hover_border_color, var(--border_color));
 }
 
+/* Accordion.svelte */
+details.accordion {
+	transition: 0.25s;
+}
+details.accordion[open] {
+	margin: 1rem 0;
+}
+details.accordion[open] summary .arrow {
+	transform: rotate(180deg);
+}
+details.accordion summary {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	outline: none;
+}
+details.accordion summary::-webkit-details-marker {
+	display: none;
+}
+details.accordion summary * {
+	pointer-events: none;
+}
+details.accordion summary .arrow {
+	transition: 0.25s;
+	position: absolute;
+	height: 0;
+	top: 50%;
+	display: flex;
+	align-items: center;
+	fill: currentColor;
+}
+details.accordion summary > *:not(.arrow) {
+	width: 100%;
+}
+details.accordion .accordion-content > .text *:first-child,
+details.accordion summary > .text *:first-child {
+	margin-top: 0;
+}
+details.accordion .accordion-content > .text *:last-child,
+details.accordion summary > .text *:last-child {
+	margin-bottom: 0;
+}
+details.accordion:not(:last-of-type):not([open]):not(.fix-bottom) {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+details.accordion:not([open]) + details.accordion {
+	border-top-width: 0px !important;
+}
+details.accordion + details.accordion[open],
+details.accordion[open] + details.accordion {
+	border-top-width: 1px !important;
+}
+details.accordion:not([open]) + details.accordion:not([open]) {
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+
 /* Button.svelte */
 .button {
 	position: relative;
