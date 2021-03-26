@@ -1,4 +1,9 @@
-/* Calendar */
+/* Generic */
+iframe {
+	display: block;
+}
+
+/* Calendar.svelte */
 .fc .fc-button {
 	position: relative;
 	display: flex;
@@ -38,7 +43,7 @@
 	opacity: 0.15;
 }
 
-/* Text */
+/* Text.svelte */
 .text {
 	text-justify: inter-word;
 }
@@ -47,21 +52,4 @@ pre {
 }
 code {
 	tab-size: 2;
-}
-
-/* Utils */
-iframe {
-	display: block;
-}
-
-.ratio-container {
-	position: relative;
-}
-
-.ratio-container > * {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
 }
