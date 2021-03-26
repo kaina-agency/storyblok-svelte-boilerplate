@@ -1,6 +1,6 @@
 <script>
 	import { afterUpdate } from 'svelte'
-	import { editable } from '../directives'
+	import { editable } from './utils'
 
 	export let blok
 	let ar = blok.ratio.split('/')[1] / blok.ratio.split('/')[0]

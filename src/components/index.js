@@ -1,21 +1,17 @@
 import NotFound from './404.svelte'
 
 import Calendar from './Calendar.svelte'
-import Feature from './Feature.svelte'
-import Grid from './Grid.svelte'
+import Code from './Code.svelte'
 import Map from './Map.svelte'
 import Page from './Page.svelte'
-import Teaser from './Teaser.svelte'
 import Text from './Text.svelte'
 import Video from './Video.svelte'
 
 const Components = {
 	Calendar: Calendar,
-	Feature: Feature,
-	Grid: Grid,
+	Code: Code,
 	Map: Map,
 	Page: Page,
-	Teaser: Teaser,
 	Text: Text,
 	Video: Video,
 }

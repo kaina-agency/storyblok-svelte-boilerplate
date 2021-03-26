@@ -1,6 +1,5 @@
 <script>
-	import { editable } from '../directives'
-	import { whenAvailable } from './utils'
+	import { editable, whenAvailable } from './utils'
 
 	export let blok
 	let eventSources = [],
@@ -40,6 +39,8 @@
 	whenAvailable('FullCalendar', loadCal)
 </script>
 
+<div id="blok-{blok._uid}" use:editable={blok} />
+
 <svelte:head>
 	<script
 		src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
@@ -49,5 +50,3 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
-
-<div id="blok-{blok._uid}" use:editable={blok} />

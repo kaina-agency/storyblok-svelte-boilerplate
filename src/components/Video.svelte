@@ -1,5 +1,5 @@
 <script>
-	import { editable } from '../directives'
+	import { editable } from './utils'
 	export let blok
 </script>
 
