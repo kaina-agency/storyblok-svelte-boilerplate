@@ -1,4 +1,15 @@
 /* Generic */
+body {
+	font-family: sans-serif;
+	margin: 0;
+	overflow-x: hidden;
+}
+li p {
+	margin: 0.5rem 0;
+}
+.small {
+	font-size: 0.75rem;
+}
 iframe {
 	display: block;
 }
@@ -122,4 +133,55 @@ iframe {
 }
 code {
 	tab-size: 2;
+}
+
+/* StoryBlok UI */
+
+.in-editor:after {
+	content: 'xs';
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 1rem;
+	left: 1rem;
+	height: 2rem;
+	width: 2rem;
+	border-radius: 50%;
+	color: white;
+	font-size: 12px;
+	z-index: 99999;
+	background: #08b2af;
+}
+@media (min-width: 640px) {
+	.in-editor:after {
+		content: 'sm';
+	}
+}
+@media (min-width: 768px) {
+	.in-editor:after {
+		content: 'md';
+	}
+}
+@media (min-width: 1024px) {
+	.in-editor:after {
+		content: 'lg';
+	}
+}
+@media (min-width: 1280px) {
+	.in-editor:after {
+		content: 'xl';
+	}
+}
+.storyblok__tooltip {
+	text-transform: initial !important;
+	font-size: 0.66rem !important;
+	padding: 0.33rem !important;
+	top: -1px !important;
+	right: -1px !important;
+	left: unset !important;
+	font-family: sans-serif !important;
+}
+.storyblok__overlay {
+	border-width: 2px !important;
 }

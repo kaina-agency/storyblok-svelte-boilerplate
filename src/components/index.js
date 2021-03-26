@@ -4,6 +4,7 @@ import Button from './Button.svelte'
 import Calendar from './Calendar.svelte'
 import Card from './Card.svelte'
 import Code from './Code.svelte'
+import Container from './Container.svelte'
 import Map from './Map.svelte'
 import Page from './Page.svelte'
 import Text from './Text.svelte'
@@ -14,6 +15,7 @@ const Components = {
 	Calendar: Calendar,
 	Card: Card,
 	Code: Code,
+	Container: Container,
 	Map: Map,
 	Page: Page,
 	Text: Text,

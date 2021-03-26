@@ -4,9 +4,8 @@
 	export let blok
 
 	function classes(b) {
-		let horizontal = b.horizontal_layout ? 'row' : '',
-			background = b.media_as_background ? 'background' : ''
-		return horizontal + ' ' + background + ' ' + blok.class
+		let background = b.media_is_background ? 'background' : ''
+		return background + ' ' + blok.class
 	}
 
 	function styles(b) {
@@ -21,24 +20,28 @@
 	style={styles(blok)}
 	use:editable={blok}
 >
-	<div class="card-container">
+	<div class="card-container {blok.horizontal_layout ? 'row' : ''}">
 		<div class="card-media">
 			{#each blok.media as blok}
 				<svelte:component this={getComponent(blok.component)} {blok} />
 			{/each}
 		</div>
-		<div class="card-content" style={padding(blok)}>
-			{#each blok.content as blok}
-				<svelte:component this={getComponent(blok.component)} {blok} />
-			{/each}
-		</div>
+		{#if blok.content.length}
+			<div class="card-content" style={padding(blok)}>
+				{#each blok.content as blok}
+					<svelte:component this={getComponent(blok.component)} {blok} />
+				{/each}
+			</div>
+		{/if}
 	</div>
 	{#if blok.show_divider}
 		<div class="card-divider" />
 	{/if}
-	<div class="card-actions" style={padding(blok)}>
-		{#each blok.actions as blok}
-			<svelte:component this={getComponent(blok.component)} {blok} />
-		{/each}
-	</div>
+	{#if blok.actions.length}
+		<div class="card-actions" style={padding(blok)}>
+			{#each blok.actions as blok}
+				<svelte:component this={getComponent(blok.component)} {blok} />
+			{/each}
+		</div>
+	{/if}
 </a>
