@@ -43,18 +43,38 @@
 	{/each}
 </svelte:head>
 
-{#each story.content.header as blok}
-	<svelte:component this={getComponent(blok.component)} {blok} />
-{/each}
+<div class="layout {story.content.layout}">
+	{#if story.content.header.length}
+		{#if story.content.layout.includes('show-sidebar-on-desktop')}
+			<div class="header-container">
+				{#each story.content.header as blok}
+					<svelte:component
+						this={getComponent(blok.component)}
+						{blok}
+						class="sidebar"
+					/>
+				{/each}
+			</div>
+		{:else}
+			{#each story.content.header as blok}
+				<svelte:component this={getComponent(blok.component)} {blok} />
+			{/each}
+		{/if}
+	{/if}
 
-{#each story.content.sidebar as blok}
-	<svelte:component this={getComponent(blok.component)} {blok} />
-{/each}
+	{#each story.content.sidebar as blok}
+		<svelte:component this={getComponent(blok.component)} {blok} />
+	{/each}
 
-<main>
-	<slot />
-</main>
+	<main class="content">
+		<slot />
+	</main>
 
-{#each story.content.footer as blok}
-	<svelte:component this={getComponent(blok.component)} {blok} />
-{/each}
+	{#if story.content.footer.length}
+		<footer class="footer">
+			{#each story.content.footer as blok}
+				<svelte:component this={getComponent(blok.component)} {blok} />
+			{/each}
+		</footer>
+	{/if}
+</div>
