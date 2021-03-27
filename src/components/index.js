@@ -7,7 +7,9 @@ import Card from './Card.svelte'
 import Code from './Code.svelte'
 import Container from './Container.svelte'
 import Font from './Font.svelte'
+import Grid from './Grid.svelte'
 import Map from './Map.svelte'
+import Masonry from './Masonry.svelte'
 import Page from './Page.svelte'
 import Text from './Text.svelte'
 import Video from './Video.svelte'
@@ -20,7 +22,9 @@ const Components = {
 	Code: Code,
 	Container: Container,
 	Font: Font,
+	Grid: Grid,
 	Map: Map,
+	Masonry: Masonry,
 	Page: Page,
 	Text: Text,
 	Video: Video,

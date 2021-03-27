@@ -163,28 +163,38 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 	align-items: center;
 	justify-content: center;
 }
-.card-container {
+.card .card-container {
 	flex-grow: 1;
 }
-.card-container.row {
+.card .card-container.row {
 	display: flex;
 	align-items: center;
 }
-.card-content .text *:first-child {
+.card .card-content .text *:first-child {
 	margin-top: 0;
 }
-.card-content .text *:last-child {
+.card .card-content .text *:last-child {
 	margin-bottom: 0;
 }
-.card-divider {
+.card .card-divider {
 	height: 1px;
 	background: currentColor;
 	opacity: 0.2;
 }
-.card-actions {
+.card .card-actions {
 	position: relative;
 	border-width: 0;
 	display: flex;
+}
+
+/* Grid.svelte */
+.grid {
+	display: grid;
+}
+
+/* Masonry.svelte */
+.__grid--masonry {
+	padding: 0 !important;
 }
 
 /* Text.svelte */
@@ -196,7 +206,6 @@ code {
 }
 
 /* StoryBlok UI */
-
 .in-editor:after {
 	content: 'xs';
 	display: flex;

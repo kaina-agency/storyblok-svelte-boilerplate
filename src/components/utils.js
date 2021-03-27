@@ -67,6 +67,37 @@ export function padding(b, wider) {
 	}
 }
 
+// responsive: set styles reponsively from Storyblok plugin
+export function responsive(selector, rule, b) {
+	return `
+		<style>
+			${selector} {
+				${rule.replace('@', b.xsmall || 1)};
+			}
+			@media (min-width: 640px) {
+				${selector} {
+				${rule.replace('@', b.small)};
+				}
+			}
+			@media (min-width: 768px) {
+				${selector} {
+				${rule.replace('@', b.medium)};
+				}
+			}
+			@media (min-width: 1024px) {
+				${selector} {
+				${rule.replace('@', b.large)};
+				}
+			}
+			@media (min-width: 1280px) {
+				${selector} {
+				${rule.replace('@', b.xlarge)};
+				}
+			}
+		</style>
+	`
+}
+
 // rounded
 export function rounded(b) {
 	let opts = {
