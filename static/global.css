@@ -232,6 +232,12 @@ code {
 	.layout.show-sidebar-on-desktop.header-on-top {
 		grid-template-areas: 'header header' 'sidebar content' 'sidebar footer';
 	}
+	.layout.show-sidebar-on-desktop .header-container {
+		grid-area: header;
+	}
+	.layout.show-sidebar-on-desktop .sidebar-backdrop {
+		display: none;
+	}
 	.layout.show-sidebar-on-desktop .sidebar {
 		grid-area: sidebar;
 		position: static;
@@ -240,18 +246,78 @@ code {
 		left: auto;
 		transform: unset;
 	}
-	.layout.show-sidebar-on-desktop .sidebar-backdrop {
-		display: none;
-	}
-	.layout.show-sidebar-on-desktop .header-container {
-		grid-area: header;
-	}
 	.layout.show-sidebar-on-desktop .content {
 		grid-area: content;
 	}
 	.layout.show-sidebar-on-desktop .footer {
 		grid-area: footer;
 	}
+}
+.sidebar-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transition: 0.25s;
+	pointer-events: none;
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+}
+.sidebar-backdrop.active {
+	pointer-events: unset;
+	opacity: 1;
+}
+
+/* header */
+.header {
+	display: flex;
+	align-items: center;
+	z-index: 10;
+	border-width: 0 !important;
+	border-bottom-width: 2px !important;
+}
+.header.sticky {
+	position: sticky;
+	top: 0;
+}
+.header .sidebar-button {
+	border-radius: 50%;
+	border: none;
+	height: 40px;
+	width: 40px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	color: currentColor;
+}
+.header .sidebar-button svg {
+	fill: currentColor;
+}
+@media (max-width: 768px) {
+	.header .sidebar-button {
+		display: flex;
+	}
+}
+
+/* sidebar */
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 300px;
+	transform: translate3d(-100%, 0, 0);
+	transition: 0.25s;
+	will-change: transform;
+	z-index: 20;
+	border-width: 0 !important;
+	border-right-width: 1px !important;
+	overflow-y: auto;
+}
+.sidebar.active {
+	transform: translate3d(0, 0, 0);
 }
 
 /* StoryBlok UI */

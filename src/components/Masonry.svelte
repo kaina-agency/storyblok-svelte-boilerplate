@@ -1,16 +1,48 @@
 <script>
-	import Masonry from 'svelte-masonry/Masonry.svelte'
+	import { beforeUpdate } from 'svelte'
+	import { whenAvailable, editable } from './utils'
 	import getComponent from './index'
-	import { editable } from './utils'
 	export let blok
+
+	function init() {
+		var bricklayer = new Bricklayer(document.querySelector('#b-' + blok._uid))
+		beforeUpdate(() => {
+			bricklayer.destroy()
+			bricklayer = new Bricklayer(document.querySelector('#b-' + blok._uid))
+		})
+	}
+	whenAvailable('Bricklayer', init)
 </script>
 
-<div class="masonry" use:editable={blok}>
-	<Masonry gridGap="{0.25 * blok.gap}rem" items={blok.content}>
-		{#each blok.content as blok}
-			<div>
-				<svelte:component this={getComponent(blok.component)} {blok} />
-			</div>
-		{/each}
-	</Masonry>
+<div id="b-{blok._uid}" class="bricklayer" use:editable={blok}>
+	{#each blok.content as blok}
+		<div class="brick">
+			<svelte:component this={getComponent(blok.component)} {blok} />
+		</div>
+	{/each}
 </div>
+
+<svelte:head>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.3/bricklayer.min.js"
+		integrity="sha512-O0jpOJXcMwZlN9FUifHRs5HE596meicJh1zXTx9Yq+b3ymXoN8XhVLv+pS7AFQ2/sDXIk5CAScT78Sn1ZbL9uA=="
+		crossorigin="anonymous"></script>
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.3/bricklayer.min.css"
+		integrity="sha512-qDxe1dF8Xm0oPdN3ZKjwLIHakEopjMqQ7Qmlv2M7ifllII7K/Y2BNxXbrI639pL9T6Fxg8vnDHIO6G8yrvL38w=="
+		crossorigin="anonymous"
+	/>
+	{@html `<style>
+		#b-${blok._uid}.bricklayer {
+			margin: 0 -${.125 * blok.gap}rem;
+		}
+		#b-${blok._uid}.bricklayer .bricklayer-column {
+			padding-left: ${.125 * blok.gap}rem;
+			padding-right: ${.125 * blok.gap}rem;
+		}
+		#b-${blok._uid}.bricklayer .bricklayer-column .brick {
+			margin-bottom: ${.25 * blok.gap}rem;
+		}
+	</style>`}
+</svelte:head>

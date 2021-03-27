@@ -12,11 +12,12 @@
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
+    "bricklayer": "^0.4.3",
     "compression": "^1.7.1",
     "polka": "0.5.2",
     "sirv": "^1.0.1",
     "storyblok-js-client": "^2.5.1",
-    "svelte-masonry": "^0.0.17",
+    "tua-body-scroll-lock": "^1.2.1",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

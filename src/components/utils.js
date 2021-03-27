@@ -141,7 +141,7 @@ export function whenAvailable(name, callback) {
 		} else {
 			whenAvailable(name, callback)
 		}
-	}, 10)
+	}, 100)
 }
 
 // editable: make components clickable in StoryBlok

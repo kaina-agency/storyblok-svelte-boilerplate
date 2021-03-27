@@ -1,4 +1,6 @@
 <script context="module">
+	import { onMount } from 'svelte'
+	import { lock, unlock } from 'tua-body-scroll-lock'
 	import client, { defaultRequestConfig as reqConfig } from '../storyblokClient'
 	import Color from '../components/Color.svelte'
 	import getComponent from '../components'
@@ -11,6 +13,51 @@
 
 <script>
 	export let story = {}
+	let sidebarActive = false
+
+	onMount(() => {
+		let sidebar = document.querySelector('.sidebar')
+		let sidebarButton = document.querySelector('.sidebar-button')
+		let sidebarBackdrop = document.querySelector('.sidebar-backdrop')
+
+		function toggleSidebar() {
+			if (sidebarActive) {
+				sidebar.classList.remove('active')
+				sidebarBackdrop.classList.remove('active')
+				unlock(sidebar)
+			} else {
+				sidebar.classList.add('active')
+				sidebarBackdrop.classList.add('active')
+				lock(sidebar)
+			}
+			sidebarActive = !sidebarActive
+		}
+
+		sidebarButton.addEventListener('click', toggleSidebar)
+		sidebarBackdrop.addEventListener('click', toggleSidebar)
+
+		let breakpoint = story.content.layout.includes('show-sidebar-on-desktop')
+			? 1024
+			: 768
+		let mq = matchMedia(`(min-width: ${breakpoint}px)`)
+
+		mq.addEventListener('change', () => {
+			if (mq.matches) {
+				sidebar.classList.remove('active')
+				sidebarBackdrop.classList.remove('active')
+				sidebarActive = false
+				unlock(sidebar)
+			}
+		})
+		sidebar.querySelectorAll('[aria-label*=page]').forEach((el) => {
+			el.addEventListener('click', () => {
+				sidebar.classList.remove('active')
+				sidebarBackdrop.classList.remove('active')
+				sidebarActive = false
+				unlock(sidebar)
+			})
+		})
+	})
 </script>
 
 <svelte:head>
@@ -48,11 +95,7 @@
 		{#if story.content.layout.includes('show-sidebar-on-desktop')}
 			<div class="header-container">
 				{#each story.content.header as blok}
-					<svelte:component
-						this={getComponent(blok.component)}
-						{blok}
-						class="sidebar"
-					/>
+					<svelte:component this={getComponent(blok.component)} {blok} />
 				{/each}
 			</div>
 		{:else}
@@ -61,6 +104,8 @@
 			{/each}
 		{/if}
 	{/if}
+
+	<div class="sidebar-backdrop" />
 
 	{#each story.content.sidebar as blok}
 		<svelte:component this={getComponent(blok.component)} {blok} />
