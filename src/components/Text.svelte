@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte'
 	import RichTextResolver from 'storyblok-js-client/dist/richTextResolver'
 	import { afterUpdate } from 'svelte'
-	import { editable, whenAvailable } from './utils'
+	import { editable } from './utils'
 
 	export let blok
 	let html, style
@@ -11,13 +11,13 @@
 	function renderText() {
 		html = resolver.render(blok.rich_text)
 		if (html.includes('<pre><code')) {
-			onMount(
-				whenAvailable('hljs', () => {
-					document.querySelectorAll('pre code').forEach((block) => {
-						hljs.highlightElement(block)
-					})
-				})
-			)
+			// onMount(
+			// 	whenAvailable('hljs', () => {
+			// 		document.querySelectorAll('pre code').forEach((block) => {
+			// 			hljs.highlightElement(block)
+			// 		})
+			// 	})
+			// )
 		} else {
 			html = html
 				.replace('{c}', '©')
