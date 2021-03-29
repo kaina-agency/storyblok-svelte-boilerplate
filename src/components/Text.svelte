@@ -11,13 +11,22 @@
 	function renderText() {
 		html = resolver.render(blok.rich_text)
 		if (html.includes('<pre><code')) {
-			onMount(
+			onMount(() => {
+				function whenAvailable(name, callback) {
+					window.setTimeout(function () {
+						if (window[name]) {
+							callback(window[name])
+						} else {
+							whenAvailable(name, callback)
+						}
+					}, 100)
+				}
 				whenAvailable('hljs', () => {
 					document.querySelectorAll('pre code').forEach((block) => {
 						hljs.highlightElement(block)
 					})
 				})
-			)
+			})
 		} else {
 			html = html
 				.replace('{c}', '©')

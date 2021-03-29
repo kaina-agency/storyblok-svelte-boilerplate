@@ -1,6 +1,6 @@
 <script>
-	import { beforeUpdate } from 'svelte'
-	import { whenAvailable, editable } from './utils'
+	import { onMount, beforeUpdate } from 'svelte'
+	import { editable } from './utils'
 	import getComponent from './index'
 	export let blok
 
@@ -11,7 +11,18 @@
 			bricklayer = new Bricklayer(document.querySelector('#b-' + blok._uid))
 		})
 	}
-	whenAvailable('Bricklayer', init)
+	onMount(() => {
+		function whenAvailable(name, callback) {
+			window.setTimeout(function () {
+				if (window[name]) {
+					callback(window[name])
+				} else {
+					whenAvailable(name, callback)
+				}
+			}, 100)
+		}
+		whenAvailable('Bricklayer', init)
+	})
 </script>
 
 <div id="b-{blok._uid}" class="bricklayer" use:editable={blok}>

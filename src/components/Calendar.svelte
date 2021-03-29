@@ -1,17 +1,18 @@
 <script>
-	import { editable, whenAvailable } from './utils'
-
+	import { onMount } from 'svelte'
+	import { editable } from './utils'
 	export let blok
-	let eventSources = [],
-		mq = matchMedia('(min-width: 1024px)'),
-		initialView = mq.matches ? 'dayGridMonth' : blok.list_view
 
-	blok.calendars.split('\n').forEach((cal) => {
-		eventSources.push({ googleCalendarId: cal })
-	})
+	function loadCal() {
+		let eventSources = [],
+			mq = matchMedia('(min-width: 1024px)'),
+			initialView = mq.matches ? 'dayGridMonth' : blok.list_view,
+			calendarEl = document.getElementById('blok-' + blok._uid)
 
-	let loadCal = () => {
-		let calendarEl = document.getElementById('blok-' + blok._uid)
+		blok.calendars.split('\n').forEach((cal) => {
+			eventSources.push({ googleCalendarId: cal })
+		})
+
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			headerToolbar: {
 				left: 'title',
@@ -36,7 +37,18 @@
 		})
 	}
 
-	whenAvailable('FullCalendar', loadCal)
+	onMount(() => {
+		function whenAvailable(name, callback) {
+			window.setTimeout(function () {
+				if (window[name]) {
+					callback(window[name])
+				} else {
+					whenAvailable(name, callback)
+				}
+			}, 100)
+		}
+		whenAvailable('FullCalendar', loadCal)
+	})
 </script>
 
 <div id="blok-{blok._uid}" use:editable={blok} />

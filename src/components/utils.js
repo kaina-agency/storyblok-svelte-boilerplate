@@ -133,17 +133,6 @@ export function shadow(b) {
 	return `box-shadow: ${opts[b.shadow]};`
 }
 
-// whenAvailable: use 3rd party frameworks once loaded, not before
-export function whenAvailable(name, callback) {
-	setTimeout(function () {
-		if (typeof [name] === 'object') {
-			callback([name])
-		} else {
-			whenAvailable(name, callback)
-		}
-	}, 100)
-}
-
 // editable: make components clickable in StoryBlok
 export const editable = (el, content) => {
 	if (typeof content._editable === 'undefined') {
