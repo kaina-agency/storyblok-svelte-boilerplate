@@ -135,13 +135,15 @@ export function shadow(b) {
 
 // whenAvailable: use 3rd party frameworks once loaded, not before
 export function whenAvailable(name, callback) {
-	window.setTimeout(function () {
-		if (window[name]) {
-			callback(window[name])
-		} else {
-			whenAvailable(name, callback)
-		}
-	}, 100)
+	if (window) {
+		window.setTimeout(function () {
+			if (window[name]) {
+				callback(window[name])
+			} else {
+				whenAvailable(name, callback)
+			}
+		}, 100)
+	}
 }
 
 // editable: make components clickable in StoryBlok
