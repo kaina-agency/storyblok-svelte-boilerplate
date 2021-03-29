@@ -44,7 +44,7 @@ details.accordion summary {
 	cursor: pointer;
 	outline: none;
 }
-details.accordion summary::-webkit-details-marker {
+details.accordion summary:marker {
 	display: none;
 }
 details.accordion summary * {
