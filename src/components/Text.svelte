@@ -11,7 +11,7 @@
 	function renderText() {
 		html = resolver.render(blok.rich_text)
 		if (html.includes('<pre><code')) {
-			omMount(
+			onMount(
 				whenAvailable('hljs', () => {
 					document.querySelectorAll('pre code').forEach((block) => {
 						hljs.highlightElement(block)
