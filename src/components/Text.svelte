@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte'
 	import RichTextResolver from 'storyblok-js-client/dist/richTextResolver'
+	import Resource from './Resource.svelte'
 	import { afterUpdate } from 'svelte'
 	import { editable } from './utils'
 
@@ -43,19 +44,11 @@
 	afterUpdate(renderText)
 </script>
 
+<Resource
+	js="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"
+	css="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atom-one-dark.min.css"
+/>
+
 <div use:editable={blok} class="text" {style}>
 	{@html html}
 </div>
-
-<svelte:head>
-	{#if blok.highlight_code_blocks}
-		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atom-one-dark.min.css"
-			type="text/css"
-			rel="stylesheet"
-		/>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js">
-		</script>
-	{/if}
-</svelte:head>
