@@ -67,6 +67,11 @@ export function padding(b, wider) {
 	}
 }
 
+export function ratio(r) {
+	if (/[0-9]+\/+[0-9]/gm.test(r))
+		return (r.split('/')[1] / r.split('/')[0]) * 100 + '%'
+}
+
 // responsive: set styles reponsively from Storyblok plugin
 export function responsive(selector, rule, b) {
 	return `

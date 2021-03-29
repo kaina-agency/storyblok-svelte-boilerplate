@@ -1,11 +1,7 @@
 <script>
 	import { afterUpdate } from 'svelte'
-	import { editable } from './utils'
+	import { ratio, editable } from './utils'
 	export let blok
-
-	function ratio(r) {
-		if (r.includes('/')) return (r.split('/')[1] / r.split('/')[0]) * 100 + '%'
-	}
 
 	function runScripts() {
 		if (blok.html.includes('<script')) {
@@ -25,23 +21,9 @@
 
 <div
 	id="b-{blok._uid}"
-	class={blok.ratio.includes('/') ? 'ratio-container' : ''}
+	class={/[0-9]+\/+[0-9]/gm.test(blok.ratio) ? 'ratio-container' : ''}
 	style="padding-top: {ratio(blok.ratio)}"
 	use:editable={blok}
 >
 	{@html blok.html.replace('iframe', "iframe loading='lazy'")}
 </div>
-
-<style>
-	.ratio-container {
-		position: relative;
-	}
-
-	.ratio-container > * {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
