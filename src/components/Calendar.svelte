@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte'
+	import Resource from './Resource.svelte'
 	import { editable } from './utils'
 	export let blok
 
@@ -51,14 +52,9 @@
 	})
 </script>
 
-<div id="blok-{blok._uid}" use:editable={blok} />
+<Resource
+	js="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"
+	css="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css"
+/>
 
-<svelte:head>
-	<script
-		src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
-	<link
-		href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css"
-		type="text/css"
-		rel="stylesheet"
-	/>
-</svelte:head>
+<div id="blok-{blok._uid}" use:editable={blok} />

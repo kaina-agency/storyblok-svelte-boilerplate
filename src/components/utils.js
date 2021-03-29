@@ -1,3 +1,26 @@
+// colors: generate styles based on props
+export function colors(b) {
+	let css = ''
+	function safeColor(color, intensity) {
+		let noIntensity = ['white', 'black', 'transparent']
+		if (color) {
+			if (noIntensity.includes(color)) {
+				return `${color}`
+			} else if (intensity) {
+				return `var(--${color}${intensity})`
+			} else return `var(--${color})`
+		}
+	}
+	;['color', 'text_color', 'border_color'].forEach((opt) => {
+		let val = safeColor(b[opt], b[opt + '_intensity'])
+		if (val) css += `--${opt}: ${safeColor(b[opt], b[opt + '_intensity'])};`
+		opt = 'hover_' + opt
+		val = safeColor(b[opt], b[opt + '_intensity'])
+		if (val) css += `--${opt}: ${safeColor(b[opt], b[opt + '_intensity'])};`
+	})
+	return css
+}
+
 // link: generate link attributes for buttons
 export function link(action) {
 	if (action) {
@@ -33,29 +56,6 @@ export function link(action) {
 			is: 'div',
 		}
 	}
-}
-
-// colors: generate styles based on props
-export function colors(b) {
-	let css = ''
-	function safeColor(color, intensity) {
-		let noIntensity = ['white', 'black', 'transparent']
-		if (color) {
-			if (noIntensity.includes(color)) {
-				return `${color}`
-			} else if (intensity) {
-				return `var(--${color}${intensity})`
-			} else return `var(--${color})`
-		}
-	}
-	;['color', 'text_color', 'border_color'].forEach((opt) => {
-		let val = safeColor(b[opt], b[opt + '_intensity'])
-		if (val) css += `--${opt}: ${safeColor(b[opt], b[opt + '_intensity'])};`
-		opt = 'hover_' + opt
-		val = safeColor(b[opt], b[opt + '_intensity'])
-		if (val) css += `--${opt}: ${safeColor(b[opt], b[opt + '_intensity'])};`
-	})
-	return css
 }
 
 // padding
