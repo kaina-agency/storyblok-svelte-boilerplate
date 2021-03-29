@@ -136,8 +136,8 @@ export function shadow(b) {
 // whenAvailable: use 3rd party frameworks once loaded, not before
 export function whenAvailable(name, callback) {
 	setTimeout(function () {
-		if (window[name]) {
-			callback(window[name])
+		if (typeof [name] === 'object') {
+			callback([name])
 		} else {
 			whenAvailable(name, callback)
 		}
