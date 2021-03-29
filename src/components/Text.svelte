@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte'
 	import RichTextResolver from 'storyblok-js-client/dist/richTextResolver'
 	import { afterUpdate } from 'svelte'
 	import { editable, whenAvailable } from './utils'
@@ -10,11 +11,13 @@
 	function renderText() {
 		html = resolver.render(blok.rich_text)
 		if (html.includes('<pre><code')) {
-			whenAvailable('hljs', () => {
-				document.querySelectorAll('pre code').forEach((block) => {
-					hljs.highlightElement(block)
+			omMount(
+				whenAvailable('hljs', () => {
+					document.querySelectorAll('pre code').forEach((block) => {
+						hljs.highlightElement(block)
+					})
 				})
-			})
+			)
 		} else {
 			html = html
 				.replace('{c}', '©')
