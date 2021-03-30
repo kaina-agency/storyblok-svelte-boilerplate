@@ -41,7 +41,7 @@
 
 <div
 	class="image {blok.class}"
-	style="{filters(blok)} width: {blok.width}px;"
+	style="{filters(blok)} {blok.width > 0 ? `width: ${blok.width}px` : ''}"
 	bind:this={el}
 >
 	{#if width > 0}

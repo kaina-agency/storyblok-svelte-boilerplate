@@ -10,10 +10,12 @@ import Font from './Font.svelte'
 import Grid from './Grid.svelte'
 import Header from './Header.svelte'
 import Image from './Image.svelte'
+import LayoutHelper from './LayoutHelper.svelte'
 import Map from './Map.svelte'
 import Masonry from './Masonry.svelte'
 import Page from './Page.svelte'
 import Sidebar from './Sidebar.svelte'
+import Slider from './Slider.svelte'
 import Spacer from './Spacer.svelte'
 import Text from './Text.svelte'
 import Typer from './Typer.svelte'
@@ -30,10 +32,12 @@ const Components = {
 	Grid: Grid,
 	Header: Header,
 	Image: Image,
+	LayoutHelper: LayoutHelper,
 	Map: Map,
 	Masonry: Masonry,
 	Page: Page,
 	Sidebar: Sidebar,
+	Slider: Slider,
 	Spacer: Spacer,
 	Text: Text,
 	Typer: Typer,

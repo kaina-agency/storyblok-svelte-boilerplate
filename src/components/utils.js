@@ -77,26 +77,26 @@ export function responsive(selector, rule, b) {
 	return `
 		<style>
 			${selector} {
-				${rule.replace('@', b.xsmall || 1)};
+				${rule.replace(/@/g, b.xsmall || 1)};
 			}
 			@media (min-width: 640px) {
 				${selector} {
-				${rule.replace('@', b.small)};
+				${rule.replace(/@/g, b.small)};
 				}
 			}
 			@media (min-width: 768px) {
 				${selector} {
-				${rule.replace('@', b.medium)};
+				${rule.replace(/@/g, b.medium)};
 				}
 			}
 			@media (min-width: 1024px) {
 				${selector} {
-				${rule.replace('@', b.large)};
+				${rule.replace(/@/g, b.large)};
 				}
 			}
 			@media (min-width: 1280px) {
 				${selector} {
-				${rule.replace('@', b.xlarge)};
+				${rule.replace(/@/g, b.xlarge)};
 				}
 			}
 		</style>

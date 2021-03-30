@@ -13,6 +13,10 @@ li p {
 iframe {
 	display: block;
 }
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+	outline: none;
+}
 .colors {
 	box-sizing: border-box;
 	transition: 0.25s;
@@ -28,7 +32,6 @@ iframe {
 .ratio-container {
 	position: relative;
 }
-
 .ratio-container > * {
 	position: absolute;
 	top: 0;
@@ -202,6 +205,43 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 .grid {
 	display: grid;
 }
+@media (max-width: 640px) {
+	.hide-xs {
+		display: none;
+	}
+}
+@media (min-width: 640px) and (max-width: 768px) {
+	.hide-xs {
+		display: block;
+	}
+	.hide-sm {
+		display: none;
+	}
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+	.hide-sm {
+		display: block;
+	}
+	.hide-md {
+		display: none;
+	}
+}
+@media (min-width: 1024px) and (max-width: 1280px) {
+	.hide-md {
+		display: block;
+	}
+	.hide-lg {
+		display: none;
+	}
+}
+@media (min-width: 1280px) {
+	.hide-lg {
+		display: block;
+	}
+	.hide-xl {
+		display: none;
+	}
+}
 
 /* Image.svelte */
 .image img {
@@ -213,6 +253,62 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 	padding: 0 !important;
 }
 
+/* Slider.svelte */
+.slider {
+	position: relative;
+	overflow: hidden;
+}
+.slider__slides {
+	position: relative;
+	display: flex;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+}
+.slider__slides::-webkit-scrollbar {
+	height: 0;
+}
+.slider__slide {
+	scroll-snap-align: start;
+}
+.slider__controls {
+	height: 0;
+	position: absolute;
+	top: 50%;
+	left: 1em;
+	width: calc(100% - 2em);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.slider__arrow {
+	background: transparent;
+	padding: 0;
+	border: 0;
+}
+.slider__dots {
+	position: absolute;
+	bottom: 0.5rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	filter: drop-shadow(0 1px 1px black);
+}
+.slider__dots button {
+	border: none;
+	background: none;
+	padding: 0 0.25rem;
+	color: inherit;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.slider__dots button svg {
+	fill: currentColor;
+}
+
 /* Text.svelte */
 .text {
 	text-justify: inter-word;
@@ -220,6 +316,8 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 code {
 	tab-size: 2;
 }
+
+/* Global Components */
 
 /* _layout.svelte */
 .layout:not(.show-sidebar-on-desktop) {

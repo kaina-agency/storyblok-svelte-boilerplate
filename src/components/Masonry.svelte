@@ -44,16 +44,16 @@
 		integrity="sha512-qDxe1dF8Xm0oPdN3ZKjwLIHakEopjMqQ7Qmlv2M7ifllII7K/Y2BNxXbrI639pL9T6Fxg8vnDHIO6G8yrvL38w=="
 		crossorigin="anonymous"
 	/>
-	{@html `<style>
+	{@html `<tag>
 		#b-${blok._uid}.bricklayer {
-			margin: 0 -${.125 * blok.gap}rem;
+			margin: 0 -${0.125 * blok.gap}rem;
 		}
 		#b-${blok._uid}.bricklayer .bricklayer-column {
-			padding-left: ${.125 * blok.gap}rem;
-			padding-right: ${.125 * blok.gap}rem;
+			padding-left: ${0.125 * blok.gap}rem;
+			padding-right: ${0.125 * blok.gap}rem;
 		}
 		#b-${blok._uid}.bricklayer .bricklayer-column .brick {
-			margin-bottom: ${.25 * blok.gap}rem;
+			margin-bottom: ${0.25 * blok.gap}rem;
 		}
-	</style>`}
+	</tag>`.replace(/tag/g, 'style')}
 </svelte:head>
