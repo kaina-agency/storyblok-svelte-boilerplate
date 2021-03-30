@@ -1,5 +1,6 @@
 <script>
-	import { link, colors, padding, rounded, shadow, editable } from './utils'
+	import { colors, padding, rounded, shadow } from './utils'
+	import Link from './Link.svelte'
 	import getComponent from './index'
 	export let blok
 
@@ -13,13 +14,7 @@
 	}
 </script>
 
-<a
-	href={link(blok.action).href}
-	aria-label={link(blok.action).aria}
-	class="card colors {classes(blok)}"
-	style={styles(blok)}
-	use:editable={blok}
->
+<Link {blok} classes="card colors {classes(blok)}" styles={styles(blok)}>
 	<div class="card-container {blok.horizontal_layout ? 'row' : ''}">
 		<div class="card-media">
 			{#each blok.media as blok}
@@ -44,4 +39,4 @@
 			{/each}
 		</div>
 	{/if}
-</a>
+</Link>

@@ -30,6 +30,7 @@ export function link(action) {
 			return {
 				href: url + '/' + anchor,
 				aria: 'Go to page: ' + action.cached_url,
+				prefetch: true,
 			}
 		} else if (action.linktype === 'url' && action.url) {
 			return {

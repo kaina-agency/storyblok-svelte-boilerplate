@@ -1,5 +1,6 @@
 <script>
-	import { link, colors, padding, rounded, shadow, editable } from './utils'
+	import { colors, padding, rounded, shadow, editable } from './utils'
+	import Link from './Link.svelte'
 	export let blok
 
 	function styles(b) {
@@ -7,13 +8,13 @@
 	}
 </script>
 
-<a
-	href={link(blok.action).href}
-	aria-label={link(blok.action).aria}
-	class="button colors {blok.class + blok.icon && blok.text ? 'pad-icon' : ''}"
-	style={styles(blok)}
-	use:editable={blok}
+<Link
+	{blok}
+	classes="button colors {blok.class} {blok.icon && blok.text
+		? 'pad-icon'
+		: ''}"
+	styles={styles(blok)}
 >
 	{@html blok.icon}
 	{blok.text}
-</a>
+</Link>

@@ -1,5 +1,5 @@
 <script>
-  export let block
+	// export let block
 </script>
 
-<div>The component {block.component} has not been created yet.</div>
+<!-- <div>The component {block.component} has not been created yet.</div> -->

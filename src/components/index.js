@@ -7,6 +7,8 @@ import Card from './Card.svelte'
 import Code from './Code.svelte'
 import Container from './Container.svelte'
 import Font from './Font.svelte'
+import Form from './Form.svelte'
+import FormField from './FormField.svelte'
 import Grid from './Grid.svelte'
 import Header from './Header.svelte'
 import Image from './Image.svelte'
@@ -29,6 +31,8 @@ const Components = {
 	Code: Code,
 	Container: Container,
 	Font: Font,
+	Form: Form,
+	FormField: FormField,
 	Grid: Grid,
 	Header: Header,
 	Image: Image,
