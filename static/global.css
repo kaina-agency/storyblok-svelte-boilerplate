@@ -59,7 +59,7 @@ details.accordion summary {
 	outline: none;
 }
 details.accordion summary:marker,
-details.accordion summary:webkit-details-marker {
+details.accordion summary::webkit-details-marker {
 	display: none;
 }
 details.accordion summary * {
