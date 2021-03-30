@@ -2,6 +2,7 @@
 	import { colors, padding, rounded, shadow, editable } from './utils'
 	import getComponent from './index'
 	export let blok
+	let accordion
 
 	function styles(b) {
 		return colors(b) + rounded(b) + shadow(b) + b.style
@@ -13,10 +14,9 @@
 	}
 
 	function fixCorners() {
-		let el = document.querySelector(`#b-${blok._uid}`)
-		let prev = el.previousElementSibling
+		let prev = accordion.previousElementSibling
 		if (prev) {
-			!el.open
+			!accordion.open
 				? prev.classList.add('fix-bottom')
 				: prev.classList.remove('fix-bottom')
 		}
@@ -24,7 +24,7 @@
 </script>
 
 <details
-	id="b-{blok._uid}"
+	bind:this={accordion}
 	class="accordion colors"
 	style={styles(blok)}
 	on:click={fixCorners}
