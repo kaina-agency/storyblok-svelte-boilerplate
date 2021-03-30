@@ -44,6 +44,15 @@ button:focus:not(:focus-visible) {
 	width: 100%;
 	height: 100%;
 }
+.text-left {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
 
 /* Accordion.svelte */
 details.accordion {
@@ -515,7 +524,7 @@ form button[type='submit'] {
 }
 @media (max-width: 640px) {
 	.hide-xs {
-		display: none;
+		display: none !important;
 	}
 }
 @media (min-width: 640px) and (max-width: 768px) {
@@ -523,7 +532,7 @@ form button[type='submit'] {
 		display: block;
 	}
 	.hide-sm {
-		display: none;
+		display: none !important;
 	}
 }
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -531,7 +540,7 @@ form button[type='submit'] {
 		display: block;
 	}
 	.hide-md {
-		display: none;
+		display: none !important;
 	}
 }
 @media (min-width: 1024px) and (max-width: 1280px) {
@@ -539,7 +548,7 @@ form button[type='submit'] {
 		display: block;
 	}
 	.hide-lg {
-		display: none;
+		display: none !important;
 	}
 }
 @media (min-width: 1280px) {
@@ -547,7 +556,7 @@ form button[type='submit'] {
 		display: block;
 	}
 	.hide-xl {
-		display: none;
+		display: none !important;
 	}
 }
 
@@ -621,8 +630,69 @@ form button[type='submit'] {
 .text {
 	text-justify: inter-word;
 }
+.content .text {
+	font-size: 16px;
+}
+@media screen and (min-width: 320px) {
+	.content .text {
+		font-size: calc(16px + 2 * ((100vw - 320px) / 680));
+	}
+}
+@media screen and (min-width: 1000px) {
+	.content .text {
+		font-size: 18px;
+	}
+}
 code {
 	tab-size: 2;
+}
+.colors .text a {
+	color: inherit;
+}
+.text img {
+	max-width: 100%;
+	height: auto;
+}
+.text .caption {
+	display: block;
+	position: relative;
+	top: -1rem;
+	margin-bottom: -1rem;
+}
+.text.line-clamp {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.text .dot-leaders {
+	display: flex;
+	align-items: baseline;
+}
+.text .dot-leaders .dots {
+	flex-grow: 1;
+	border-bottom: 3px dotted currentColor;
+	position: relative;
+	margin: 0 0.25rem;
+}
+.text .credit {
+	font-family: sans-serif;
+	position: relative;
+	display: inline-block;
+	padding: 0 0.5rem;
+	margin-left: 0.25rem;
+	outline: 2px solid currentColor;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.text .credit:hover:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: currentColor;
+	opacity: 0.2;
 }
 
 /* Global Components */
@@ -675,22 +745,6 @@ code {
 		grid-area: footer;
 	}
 }
-.sidebar-backdrop {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	transition: 0.25s;
-	pointer-events: none;
-	background: rgba(0, 0, 0, 0.5);
-	z-index: 20;
-	opacity: 0;
-}
-.sidebar-backdrop.active {
-	pointer-events: unset;
-	opacity: 1;
-}
 
 /* header */
 .header {
@@ -724,6 +778,24 @@ code {
 	}
 }
 
+/* sidebar backdrop */
+.sidebar-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transition: 0.25s;
+	pointer-events: none;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 20;
+	opacity: 0;
+}
+.sidebar-backdrop.active {
+	pointer-events: unset;
+	opacity: 1;
+}
+
 /* sidebar */
 .sidebar {
 	position: fixed;
@@ -741,6 +813,10 @@ code {
 }
 .sidebar.active {
 	transform: translate3d(0, 0, 0);
+}
+
+.content {
+	margin-bottom: 1rem;
 }
 
 /* StoryBlok UI */

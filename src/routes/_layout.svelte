@@ -62,11 +62,11 @@
 
 <svelte:head>
 	<!-- Standard -->
-	<title>{story.content.site_meta.title || story.name}</title>
+	<!-- <title>{story.content.site_meta.title || story.name}</title>
 	<meta name="title" content={story.content.site_meta.title || story.name} />
-	<meta name="description" content={story.content.site_meta.description} />
+	<meta name="description" content={story.content.site_meta.description} /> -->
 	<!-- Open Graph -->
-	<meta property="og:type" content="website" />
+	<!-- <meta property="og:type" content="website" />
 	<meta
 		property="og:title"
 		content={story.content.site_meta.title || story.name}
@@ -74,16 +74,16 @@
 	<meta
 		property="og:description"
 		content={story.content.site_meta.description}
-	/>
+	/> -->
 	<!-- Twitter -->
-	<meta
+	<!-- <meta
 		property="twitter:title"
 		content={story.content.site_meta.title || story.name}
 	/>
 	<meta
 		property="twitter:description"
 		content={story.content.site_meta.description}
-	/>
+	/> -->
 	<!-- Theme -->
 	{#each ['primary', 'secondary', 'gray', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink'] as color}
 		<Color color={story.content[color]} colorName={color} />

@@ -7,6 +7,7 @@
 	export let blok
 	let resolver = new RichTextResolver()
 	let debounce = require('lodash/debounce')
+	let el
 
 	function highlightText() {
 		function whenAvailable(name, callback) {
@@ -35,6 +36,7 @@
 			html = html
 				.replace('{c}', '©')
 				.replace('{yyyy}', new Date().getFullYear())
+				.replace(/{dot-leader}/g, "<div class='dots'></div>")
 				.replace(
 					'{credit}',
 					"<a class='credit' href='https://kaina.agency'>καιnὰ</a>"
@@ -42,6 +44,15 @@
 		}
 		return { html: html, highlight: highlight }
 	}
+
+	afterUpdate(() => {
+		el.querySelectorAll('p').forEach((p) => {
+			if (p.innerText.includes('{dots}')) {
+				p.innerHTML = p.innerHTML.replace('{dots}', "<div class='dots'></div>")
+				p.classList.add('dot-leaders')
+			}
+		})
+	})
 </script>
 
 {#if renderText(blok).highlight}
@@ -51,6 +62,11 @@
 	/>
 {/if}
 
-<div use:editable={blok} class="text">
+<div
+	use:editable={blok}
+	class="text"
+	style="color: {blok.color}; text-align:{blok.alignment}"
+	bind:this={el}
+>
 	{@html renderText(blok).html}
 </div>

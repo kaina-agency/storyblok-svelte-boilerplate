@@ -31,8 +31,9 @@
 
 <Resource js="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" />
 
-<div use:editable={blok} class={blok.class} style={blok.style} />
-{@html `<${blok.tag}><span class="typer"></span><${blok.tag}>`}
-<div id="typed-strings">
-	{@html resolver.render(blok.text)}
+<div use:editable={blok} class={blok.class} style={blok.style}>
+	{@html `<${blok.tag}><span class="typer"></span><${blok.tag}>`}
+	<div id="typed-strings">
+		{@html resolver.render(blok.text)}
+	</div>
 </div>

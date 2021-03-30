@@ -5,11 +5,15 @@
 	export let blok
 	let selector = '#b-' + blok._uid,
 		rule = 'grid-column: span @ / span @;'
+
+	function hide(b) {
+		if (b) return b.join(' ')
+	}
 </script>
 
 <div
 	id="b-{blok._uid}"
-	class="{blok.hide_on_breakpoint} {blok.class}"
+	class="{hide(blok.hide_on_breakpoint)} {blok.class}"
 	use:editable={blok}
 >
 	{#each blok.content as blok}
