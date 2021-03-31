@@ -615,6 +615,9 @@ form button[type='submit'] {
 }
 
 /* Slider.svelte */
+.slider__wrapper {
+	overflow: hidden;
+}
 .slider {
 	position: relative;
 	overflow: hidden;
