@@ -78,26 +78,26 @@ export function responsive(selector, rule, b) {
 	return `
 		<style>
 			${selector} {
-				${rule.replace(/@/g, b.xsmall || 1)};
+				${rule.replace(/@/g, b.xsmall || 1)}
 			}
 			@media (min-width: 640px) {
 				${selector} {
-				${rule.replace(/@/g, b.small)};
+				${rule.replace(/@/g, b.small)}
 				}
 			}
 			@media (min-width: 768px) {
 				${selector} {
-				${rule.replace(/@/g, b.medium)};
+				${rule.replace(/@/g, b.medium)}
 				}
 			}
 			@media (min-width: 1024px) {
 				${selector} {
-				${rule.replace(/@/g, b.large)};
+				${rule.replace(/@/g, b.large)}
 				}
 			}
 			@media (min-width: 1280px) {
 				${selector} {
-				${rule.replace(/@/g, b.xlarge)};
+				${rule.replace(/@/g, b.xlarge)}
 				}
 			}
 		</style>
@@ -137,6 +137,72 @@ export function shadow(b) {
 		none: 'none',
 	}
 	return `box-shadow: ${opts[b.shadow]};`
+}
+
+// tw
+export function tw(b) {
+	let selector = '#b-' + b._uid
+	let classes = b.class.replace(/\n/g, ' ').split(' ')
+	let output = []
+
+	classes.forEach((i) => {
+		{
+			let p
+			let v
+
+			let bp = i.match(/[a-z]+:/)
+			let neg = i.includes('-m') ? '-' : ''
+			let n = i.match(/[0-9]+/)
+
+			let margin = i.match(/ml|mr|mb|mt|m-/)
+			let padding = i.match(/pl|pr|pb|pt|p-/)
+
+			if (margin && margin[0]) {
+				p = margin[0]
+					.replace('ml', 'margin-left:')
+					.replace('mr', 'margin-right:')
+					.replace('mb', 'margin-bottom:')
+					.replace('mt', 'margin-top:')
+					.replace('m-', 'margin:')
+			}
+
+			if (padding && padding[0]) {
+				p = padding[0]
+					.replace('pl', 'padding-left:')
+					.replace('pr', 'padding-right:')
+					.replace('pb', 'padding-bottom:')
+					.replace('pt', 'padding-top:')
+					.replace('p-', 'padding:')
+			}
+
+			if (n && n[0]) {
+				v = n[0] * 0.25 + 'rem;'
+			}
+
+			let mq = '*'
+			let rule = `${selector} {${p + neg + v}}`
+
+			if (bp) {
+				if (bp[0] === 'sm:') {
+					mq = '@media (min-width: 640px) {*}'
+				} else if (bp[0] === 'md:') {
+					mq = '@media (min-width: 768px) {*}'
+				} else if (bp[0] === 'lg:') {
+					mq = '@media (min-width: 1024px) {*}'
+				} else if (bp[0] === 'xl:') {
+					mq = '@media (min-width: 1280px) {*}'
+				}
+			}
+
+			let computed = mq.replace('*', rule)
+
+			if (!computed.includes('undefined')) {
+				output.push(computed)
+			}
+		}
+	})
+
+	return `<style>${output.join(' ')}</style>`
 }
 
 // editable: make components clickable in StoryBlok

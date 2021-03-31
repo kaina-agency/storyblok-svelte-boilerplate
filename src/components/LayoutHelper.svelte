@@ -1,8 +1,8 @@
 <script>
-	import { responsive, editable } from './utils'
+	import { responsive, tw, editable } from './utils'
 	import getComponent from './index'
-
 	export let blok
+
 	let selector = '#b-' + blok._uid,
 		rule = 'grid-column: span @ / span @;'
 
@@ -23,4 +23,7 @@
 
 <svelte:head>
 	{@html responsive(selector, rule, blok.responsive)}
+	{#if blok.class && blok.class.includes('-')}
+		{@html tw(blok)}
+	{/if}
 </svelte:head>

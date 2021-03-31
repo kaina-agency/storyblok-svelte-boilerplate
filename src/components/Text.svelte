@@ -42,17 +42,21 @@
 					"<a class='credit' href='https://kaina.agency'>καιnὰ</a>"
 				)
 		}
+		if (html.includes('{dots}')) {
+			afterUpdate(() => {
+				el.querySelectorAll('p').forEach((p) => {
+					if (p.innerText.includes('{dots}')) {
+						p.innerHTML = p.innerHTML.replace(
+							'{dots}',
+							"<div class='dots'></div>"
+						)
+						p.classList.add('dot-leaders')
+					}
+				})
+			})
+		}
 		return { html: html, highlight: highlight }
 	}
-
-	afterUpdate(() => {
-		el.querySelectorAll('p').forEach((p) => {
-			if (p.innerText.includes('{dots}')) {
-				p.innerHTML = p.innerHTML.replace('{dots}', "<div class='dots'></div>")
-				p.classList.add('dot-leaders')
-			}
-		})
-	})
 </script>
 
 {#if renderText(blok).highlight}

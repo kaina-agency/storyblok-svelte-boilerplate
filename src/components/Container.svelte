@@ -1,9 +1,10 @@
 <script>
+	import { editable } from './utils'
 	import getComponent from './index'
 	export let blok
 </script>
 
-<div class="container">
+<div class="container" use:editable={blok}>
 	{#each blok.content as blok}
 		<svelte:component this={getComponent(blok.component)} {blok} />
 	{/each}

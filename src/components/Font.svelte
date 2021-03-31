@@ -1,5 +1,5 @@
 <script>
-	import {afterUpdate} from 'svelte'
+	import { afterUpdate } from 'svelte'
 	export let blok
 
 	function css(b) {
@@ -8,28 +8,30 @@
 			custom_class = `.${b.custom_class}, .${b.custom_class} *`
 		}
 		return `
-		<style>
+		<tag>
 			${custom_class || b.apply_to} {
 				font-family: ${b.font_family};
 				font-weight: ${b.font_weight};
 			}
-		</style>
-		`
+		</tag>
+		`.replace(/tag/g, 'style')
 	}
 
 	function loadFont() {
-		const WebFont = require("webfontloader");
-			if (blok.adobe_fonts_project) {
-				WebFont.load({
-					typekit: { id: blok.adobe_fonts_project },
-				});
-			} else {
-				WebFont.load({
-					google: {
-						families: [blok.font_family + ":" + blok.font_weight],
-					},
-				});
-			}
+		const WebFont = require('webfontloader')
+		if (blok.adobe_fonts_project) {
+			WebFont.load({
+				typekit: { id: blok.adobe_fonts_project },
+			})
+		} else {
+			WebFont.load({
+				google: {
+					families: [
+						blok.font_family + ':' + blok.font_weight + '&display=swap',
+					],
+				},
+			})
+		}
 	}
 
 	afterUpdate(loadFont)
