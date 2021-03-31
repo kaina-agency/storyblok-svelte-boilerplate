@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte'
-	export let js
-	export let css
+	export let js = undefined
+	export let css = undefined
 
 	onMount(() => {
 		if (js) {

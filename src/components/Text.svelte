@@ -61,8 +61,8 @@
 
 {#if renderText(blok).highlight}
 	<Resource
-		js="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"
-		css="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atom-one-dark.min.css"
+		js="https://unpkg.com/highlightjs@9.16.2/highlight.pack.min.js"
+		css="https://unpkg.com/highlightjs@9.16.2/styles/atom-one-dark.css"
 	/>
 {/if}
 

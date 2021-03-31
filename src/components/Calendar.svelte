@@ -53,8 +53,8 @@
 </script>
 
 <Resource
-	js="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"
-	css="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css"
+	js="https://unpkg.com/fullcalendar@5.6.0/main.min.js"
+	css="https://unpkg.com/fullcalendar@5.6.0/main.min.css"
 />
 
 <div id="blok-{blok._uid}" use:editable={blok} />

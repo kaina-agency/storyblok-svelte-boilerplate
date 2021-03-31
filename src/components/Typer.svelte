@@ -29,7 +29,7 @@
 	})
 </script>
 
-<Resource js="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" />
+<Resource js="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js" />
 
 <div use:editable={blok} class={blok.class} style={blok.style}>
 	{@html `<${blok.tag}><span class="typer"></span><${blok.tag}>`}
