@@ -61,10 +61,12 @@ export function link(action) {
 
 // padding
 export function padding(b, wider) {
-	if (b.padding > 0 && wider === true) {
+	if (b.padding >= 0 && wider === true) {
 		return `padding: ${b.padding * 0.25}rem ${b.padding * 0.5}rem;`
-	} else if (b.padding > 0) {
+	} else if (b.padding >= 0) {
 		return `padding: ${b.padding * 0.25}rem;`
+	} else {
+		return ''
 	}
 }
 
