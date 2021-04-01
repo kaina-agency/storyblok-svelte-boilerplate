@@ -147,42 +147,49 @@ export function tw(b) {
 	let classes = b.class.replace(/\n/g, ' ').split(' ')
 	let output = []
 
-	classes.forEach((i) => {
+	classes.forEach((tw) => {
 		{
-			let p
-			let v
+			let property
+			let value
+			let rule
+			let mq = '*'
 
-			let bp = i.match(/[a-z]+:/)
-			let neg = i.includes('-m') ? '-' : ''
-			let n = i.match(/[0-9]+/)
+			let bp = tw.match(/[a-z]+:/)
+			let neg = tw.includes('-m') ? '-' : ''
+			let number = tw.match(/[0-9]+/)
 
-			let margin = i.match(/ml|mr|mb|mt|m-/)
-			let padding = i.match(/pl|pr|pb|pt|p-/)
+			let margin = tw.match(/mt|mr|mb|ml|mx|my|m-/)
+			let padding = tw.match(/pt|pr|pb|pl|px|py|p-/)
 
 			if (margin && margin[0]) {
-				p = margin[0]
-					.replace('ml', 'margin-left:')
-					.replace('mr', 'margin-right:')
-					.replace('mb', 'margin-bottom:')
-					.replace('mt', 'margin-top:')
-					.replace('m-', 'margin:')
+				property = margin[0]
+					.replace('mt', 'margin-top: *')
+					.replace('mr', 'margin-right: *')
+					.replace('mb', 'margin-bottom: *')
+					.replace('ml', 'margin-left: *')
+					.replace('mx', 'margin-right: * margin-left: *')
+					.replace('my', 'margin-top: * margin-bottom: *')
+					.replace('m-', 'margin: *')
 			}
 
 			if (padding && padding[0]) {
-				p = padding[0]
-					.replace('pl', 'padding-left:')
-					.replace('pr', 'padding-right:')
-					.replace('pb', 'padding-bottom:')
-					.replace('pt', 'padding-top:')
-					.replace('p-', 'padding:')
+				property = padding[0]
+					.replace('pt', 'padding-top: *')
+					.replace('pr', 'padding-right: *')
+					.replace('pb', 'padding-bottom: *')
+					.replace('pl', 'padding-left: *')
+					.replace('px', 'padding-right: * padding-left: *')
+					.replace('py', 'padding-top: * padding-bottom: *')
+					.replace('p-', 'padding: *')
 			}
 
-			if (n && n[0]) {
-				v = n[0] * 0.25 + 'rem;'
+			if (number && number[0]) {
+				value = number[0] * 0.25 + 'rem;'
 			}
 
-			let mq = '*'
-			let rule = `${selector} {${p + neg + v}}`
+			if (property) {
+				rule = `${selector} {${property.replace(/\*/g, neg + value)}}`
+			}
 
 			if (bp) {
 				if (bp[0] === 'sm:') {

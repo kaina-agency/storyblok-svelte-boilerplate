@@ -68,7 +68,7 @@
 
 <div
 	class="text {blok.class}"
-	style="color: {blok.color}; text-align:{blok.alignment}"
+	style="color: {blok.color}; text-align:{blok.alignment}; {blok.style}"
 	bind:this={el}
 	use:editable={blok}
 >

@@ -70,7 +70,10 @@
 			</label>
 		{/each}
 	{:else}
-		<fieldset class={blok.type}>
+		<fieldset
+			class={blok.type}
+			onclick="this.querySelector('.dynamic').focus();"
+		>
 			{#if blok.type === 'textarea'}
 				<textarea
 					class="dynamic"
