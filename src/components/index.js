@@ -15,6 +15,7 @@ import Image from './Image.svelte'
 import LayoutHelper from './LayoutHelper.svelte'
 import Map from './Map.svelte'
 import Masonry from './Masonry.svelte'
+import Modal from './Modal.svelte'
 import Page from './Page.svelte'
 import Sidebar from './Sidebar.svelte'
 import Slider from './Slider.svelte'
@@ -39,6 +40,7 @@ const Components = {
 	LayoutHelper: LayoutHelper,
 	Map: Map,
 	Masonry: Masonry,
+	Modal: Modal,
 	Page: Page,
 	Sidebar: Sidebar,
 	Slider: Slider,

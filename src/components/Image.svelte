@@ -38,9 +38,12 @@
 	}
 
 	function setWidth() {
-		let newWidth = Math.round((el.clientWidth * devicePixelRatio) / 100) * 100
-		if (newWidth > width) {
-			width = newWidth
+		let perfectWidth =
+			Math.round((el.clientWidth * devicePixelRatio) / 100) * 100
+		if (perfectWidth !== 0 && perfectWidth > width) {
+			width = perfectWidth
+		} else {
+			width = blok.width || 600
 		}
 	}
 

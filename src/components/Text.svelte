@@ -21,7 +21,7 @@
 		}
 		whenAvailable('hljs', () => {
 			document.querySelectorAll('pre code').forEach((block) => {
-				hljs.highlightElement(block)
+				hljs.highlightAll(block)
 			})
 		})
 	}
@@ -70,7 +70,7 @@
 
 {#if renderText(blok).highlight}
 	<Resource
-		js="https://unpkg.com/highlightjs@9.16.2/highlight.pack.min.js"
-		css="https://unpkg.com/highlightjs@9.16.2/styles/atom-one-dark.css"
+		js="//unpkg.com/@highlightjs/cdn-assets@10.7.1/highlight.min.js"
+		css="//unpkg.com/@highlightjs/cdn-assets@10.7.1/styles/atom-one-dark.min.css"
 	/>
 {/if}
