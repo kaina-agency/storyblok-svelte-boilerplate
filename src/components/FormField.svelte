@@ -70,7 +70,7 @@
 			</label>
 		{/each}
 	{:else}
-		<fieldset>
+		<fieldset class={blok.type}>
 			{#if blok.type === 'textarea'}
 				<textarea
 					class="dynamic"
@@ -96,10 +96,12 @@
 					class="dynamic"
 					id="b-{blok._uid}"
 					name={fieldName(blok)}
+					pattern={blok.type === 'tel'
+						? '(?:\\(\\d{3}\\)|\\d{3})[- ]?\\d{3}[- ]?\\d{4}'
+						: undefined}
 					placeholder={blok.field_name}
 					required={blok.required}
 					type={blok.type}
-					on:click={blok.type === 'tel' ? openSelect : undefined}
 					on:input={blok.type === 'tel' ? phoneMask : undefined}
 				/>
 			{/if}
