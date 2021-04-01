@@ -1,6 +1,7 @@
 <script>
-	import { onMount } from 'svelte'
+	import { onMount, beforeUpdate } from 'svelte'
 	import { responsive, editable } from './utils'
+	import Resource from './Resource.svelte'
 	import getComponent from './index'
 	export let blok
 
@@ -8,27 +9,22 @@
 		rule = 'width: calc(100% / @);'
 
 	function init() {
-		let loaded = 0
 		let el = document.querySelector('#b-' + blok._uid)
-		if (loaded === images.length) {
-			let options = {
-				itemSelector: '.grid-item',
-				columnWidth: '.grid-sizer',
-				percentPosition: true,
-			}
-			let msnry = new Masonry(el, options)
-			window.dispatchEvent(new Event('resize'))
-			// watch for new items in editor
-			new MutationObserver((mutationsList) => {
-				for (const mutation of mutationsList) {
-					msnry.destroy()
-					msnry = new Masonry(el, options)
-					window.dispatchEvent(new Event('resize'))
-				}
-			}).observe(el, {
-				childList: true,
-			})
+		let options = {
+			itemSelector: '.grid-item',
+			columnWidth: '.grid-sizer',
+			percentPosition: true,
 		}
+		let msnry = new Masonry(el, options)
+		// watch for new items in editor
+		new MutationObserver((mutationsList) => {
+			for (const mutation of mutationsList) {
+				msnry.destroy()
+				msnry = new Masonry(el, options)
+			}
+		}).observe(el, {
+			childList: true,
+		})
 	}
 
 	onMount(() => {
@@ -42,6 +38,11 @@
 			}, 100)
 		}
 		whenAvailable('Masonry', init)
+		window.dispatchEvent(new Event('resize'))
+	})
+
+	beforeUpdate(() => {
+		window.dispatchEvent(new Event('resize'))
 	})
 </script>
 
@@ -56,15 +57,15 @@
 	</div>
 </div>
 
+<Resource js="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js" />
+
 <svelte:head>
-	<script
-		src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	{@html `<tag>
 		#b-${blok._uid} {
 			margin: -${blok.gap * 2}px -${blok.gap * 2}px;
 			margin-bottom: 0;
 		}
-		.grid-item > *{
+		#b-${blok._uid} .grid-item > *{
 			margin: ${blok.gap * 2}px;
 		}
 	</tag>`.replace(/tag/g, 'style')}

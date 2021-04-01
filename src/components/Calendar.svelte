@@ -52,9 +52,9 @@
 	})
 </script>
 
+<div class="calendar" id="blok-{blok._uid}" use:editable={blok} />
+
 <Resource
 	js="https://unpkg.com/fullcalendar@5.6.0/main.min.js"
 	css="https://unpkg.com/fullcalendar@5.6.0/main.min.css"
 />
-
-<div class="calendar" id="blok-{blok._uid}" use:editable={blok} />
