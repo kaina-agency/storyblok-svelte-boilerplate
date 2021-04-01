@@ -299,7 +299,7 @@ fieldset .icon svg {
 }
 fieldset legend {
 	position: relative;
-	transition: 0.25s;
+	transition: 0.5s;
 	color: var(--color-default);
 	font-size: 14px;
 }
@@ -390,7 +390,6 @@ fieldset
 fieldset textarea {
 	font: inherit;
 	resize: none;
-	margin-top: 2px;
 }
 fieldset select {
 	margin-left: -2px;
