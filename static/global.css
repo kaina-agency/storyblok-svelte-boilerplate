@@ -390,6 +390,7 @@ fieldset
 fieldset textarea {
 	font: inherit;
 	resize: none;
+	margin-top: 2px;
 }
 fieldset select {
 	margin-left: -2px;
