@@ -7,15 +7,16 @@
 	let el
 	let width = 0
 
-	function setWidth() {
-		let newWidth = Math.round((el.clientWidth * devicePixelRatio) / 100) * 100
-		if (newWidth > width) {
-			width = newWidth
+	function style(b) {
+		let filters = `filter: brightness(${b.brightness}) contrast(${b.contrast}) saturate(${b.saturation});`
+		let ratio
+		if (/[0-9]+\/+[0-9]/gm.test(b.aspect_ratio)) {
+			ratio = blok.aspect_ratio.split('/')[1] / blok.aspect_ratio.split('/')[0]
+			ratio = (ratio * 100).toFixed(2)
 		}
-	}
+		let padding = ratio ? `padding-top: ${ratio}%;` : ''
 
-	function filters(b) {
-		return `filter: brightness(${b.brightness}) contrast(${b.contrast}) saturate(${b.saturation}); ${b.style}`
+		return filters + padding + b.style
 	}
 
 	function src(b, w) {
@@ -36,12 +37,19 @@
 		}
 	}
 
+	function setWidth() {
+		let newWidth = Math.round((el.clientWidth * devicePixelRatio) / 100) * 100
+		if (newWidth > width) {
+			width = newWidth
+		}
+	}
+
 	onMount(setWidth)
 </script>
 
 <div
 	class="image {blok.class}"
-	style="{filters(blok)} {blok.width > 0 ? `width: ${blok.width}px` : ''}"
+	style="{style(blok)} {blok.width > 0 ? `width: ${blok.width}px` : ''}"
 	bind:this={el}
 >
 	{#if width > 0}
@@ -56,3 +64,16 @@
 </div>
 
 <svelte:window on:resize={debounce(setWidth, 500)} />
+
+<style>
+	.image {
+		position: relative;
+	}
+	.image[style*='padding-top'] img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

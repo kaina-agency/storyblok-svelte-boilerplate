@@ -24,9 +24,9 @@
 </script>
 
 <details
-	bind:this={accordion}
 	class="accordion colors"
 	style={styles(blok)}
+	bind:this={accordion}
 	on:click={fixCorners}
 	use:editable={blok}
 >

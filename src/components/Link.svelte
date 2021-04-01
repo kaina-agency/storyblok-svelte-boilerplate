@@ -5,11 +5,11 @@
 
 {#if link(blok.action).href}
 	<a
-		href={link(blok.action).href}
-		rel={link(blok.action).prefetch ? 'prefetch' : ''}
-		aria-label={link(blok.action).aria}
 		class={classes}
 		style={styles}
+		href={link(blok.action).href}
+		aria-label={link(blok.action).aria}
+		rel={link(blok.action).prefetch ? 'prefetch' : ''}
 		use:editable={blok}
 	>
 		<slot />

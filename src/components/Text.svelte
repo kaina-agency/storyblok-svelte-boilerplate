@@ -67,10 +67,10 @@
 {/if}
 
 <div
-	use:editable={blok}
 	class="text {blok.class}"
 	style="color: {blok.color}; text-align:{blok.alignment}"
 	bind:this={el}
+	use:editable={blok}
 >
 	{@html renderText(blok).html}
 </div>

@@ -10,31 +10,25 @@
 	function init() {
 		let loaded = 0
 		let el = document.querySelector('#b-' + blok._uid)
-		let images = el.querySelectorAll('.grid-item img')
-		images.forEach((image) => {
-			image.addEventListener('load', () => {
-				loaded++
-				if (loaded === images.length) {
-					let options = {
-						itemSelector: '.grid-item',
-						columnWidth: '.grid-sizer',
-						percentPosition: true,
-					}
-					let msnry = new Masonry(el, options)
+		if (loaded === images.length) {
+			let options = {
+				itemSelector: '.grid-item',
+				columnWidth: '.grid-sizer',
+				percentPosition: true,
+			}
+			let msnry = new Masonry(el, options)
+			window.dispatchEvent(new Event('resize'))
+			// watch for new items in editor
+			new MutationObserver((mutationsList) => {
+				for (const mutation of mutationsList) {
+					msnry.destroy()
+					msnry = new Masonry(el, options)
 					window.dispatchEvent(new Event('resize'))
-					// watch for new items in editor
-					new MutationObserver((mutationsList) => {
-						for (const mutation of mutationsList) {
-							msnry.destroy()
-							msnry = new Masonry(el, options)
-							window.dispatchEvent(new Event('resize'))
-						}
-					}).observe(el, {
-						childList: true,
-					})
 				}
+			}).observe(el, {
+				childList: true,
 			})
-		})
+		}
 	}
 
 	onMount(() => {

@@ -12,8 +12,8 @@
 </script>
 
 <div
+	class="helper {hide(blok.hide_on_breakpoint)} {blok.class}"
 	id="b-{blok._uid}"
-	class="{hide(blok.hide_on_breakpoint)} {blok.class}"
 	use:editable={blok}
 >
 	{#each blok.content as blok}

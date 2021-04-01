@@ -268,149 +268,141 @@ form button[type='submit'] {
 }
 
 /* FormField.svelte */
-.text-field-wrapper {
-	--color-invalid: #b91c1c;
-	--color-valid: #047857;
-	font-family: sans-serif;
+fieldset {
 	position: relative;
-	width: 100%;
-	min-height: 3rem;
-}
-.text-field-wrapper > * {
-	position: absolute;
-}
-.text-field-wrapper input,
-.text-field-wrapper textarea,
-.text-field-wrapper select {
-	box-sizing: border-box;
-	height: 100%;
-	width: 100%;
-	padding-left: 0.5rem;
-	font-size: 1rem;
-	border-radius: 4px;
-	transition: 0.25s;
+	font-family: sans-serif;
+	border-radius: 0.25rem;
 	border: 1px solid var(--color-default);
-	box-shadow: inset 0 0 0 100vw #fafafa;
+	display: flex;
+	flex-direction: row-reverse;
+	min-height: 2.25rem;
+	margin-bottom: 1rem;
+	margin-left: 0;
+	margin-right: 0;
 }
-.text-field-wrapper input ~ .icon svg,
-.text-field-wrapper textarea ~ .icon svg,
-.text-field-wrapper select ~ .icon svg {
-	fill: var(--color-default);
+
+.helper fieldset {
+	margin-bottom: 0;
 }
-.text-field-wrapper
-	input:not(select):not(:focus):not(:placeholder-shown):invalid,
-.text-field-wrapper
-	textarea:not(select):not(:focus):not(:placeholder-shown):invalid,
-.text-field-wrapper
-	select:not(select):not(:focus):not(:placeholder-shown):invalid {
-	border-color: var(--color-invalid);
-	box-shadow: inset 0 0 0 100vw #fef2f2;
-}
-.text-field-wrapper
-	input:not(select):not(:focus):not(:placeholder-shown):invalid
-	~ .icon
-	svg,
-.text-field-wrapper
-	textarea:not(select):not(:focus):not(:placeholder-shown):invalid
-	~ .icon
-	svg,
-.text-field-wrapper
-	select:not(select):not(:focus):not(:placeholder-shown):invalid
-	~ .icon
-	svg {
-	fill: var(--color-invalid);
-}
-.text-field-wrapper
-	input:not(select):not(:focus):not(:placeholder-shown):invalid
-	~ .error-message,
-.text-field-wrapper
-	textarea:not(select):not(:focus):not(:placeholder-shown):invalid
-	~ .error-message,
-.text-field-wrapper
-	select:not(select):not(:focus):not(:placeholder-shown):invalid
-	~ .error-message {
+
+fieldset svg {
 	display: block;
 }
-.text-field-wrapper input:not(select):not(:focus):not(:placeholder-shown):valid,
-.text-field-wrapper
-	textarea:not(select):not(:focus):not(:placeholder-shown):valid,
-.text-field-wrapper
-	select:not(select):not(:focus):not(:placeholder-shown):valid {
-	border-color: var(--color-valid);
-	box-shadow: inset 0 0 0 100vw #ecfdf5;
+fieldset .icon:not(:empty) {
+	margin-left: -0.25rem;
+	margin-right: 0.25rem;
+	margin-top: -1px;
 }
-.text-field-wrapper
-	input:not(select):not(:focus):not(:placeholder-shown):valid
-	~ .icon
-	svg,
-.text-field-wrapper
-	textarea:not(select):not(:focus):not(:placeholder-shown):valid
-	~ .icon
-	svg,
-.text-field-wrapper
-	select:not(select):not(:focus):not(:placeholder-shown):valid
-	~ .icon
-	svg {
-	fill: var(--color-valid);
+fieldset .icon svg {
+	fill: #333;
+	transition: 0.25s;
 }
-.text-field-wrapper select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	min-width: 100%;
+fieldset legend {
+	position: relative;
+	transition: 0.25s;
+	color: var(--color-default);
+	font-size: 14px;
+	height: 14px;
 }
-.text-field-wrapper .icon,
-.text-field-wrapper .arrow {
-	left: 0.5rem;
-	height: 0;
+fieldset legend label {
 	display: flex;
 	align-items: center;
-	top: 50%;
-	pointer-events: none;
+	opacity: 1;
 }
-.text-field-wrapper .arrow {
-	left: auto;
-	right: 0.5rem;
+fieldset legend label svg {
+	height: 1em;
+	width: 1em;
 }
-.text-field-wrapper .error-message {
+fieldset legend label .valid {
+	fill: green;
+	margin-left: 0.5em;
 	display: none;
-	color: var(--color-invalid);
-	bottom: 0.1rem;
-	left: calc(2.25rem + 1px);
-	font-size: 0.75rem;
-	pointer-events: none;
 }
-.text-field-wrapper.grow-wrap {
-	display: grid;
+fieldset legend label .invalid {
+	fill: red;
+	margin-right: 0.5em;
+	display: none;
 }
-.text-field-wrapper.grow-wrap:after {
+fieldset legend label .error-message {
+	color: red;
+	display: none;
+}
+fieldset .dynamic {
+	background: transparent;
+	width: 100%;
+	border: none;
+	box-sizing: border-box;
+	font-size: 1rem;
+	box-shadow: inset 0 0 0 100vw white;
+}
+fieldset .dynamic::placeholder {
+	color: #333;
+}
+fieldset .dynamic:focus {
+	outline: none;
+}
+fieldset .dynamic:focus ~ .icon svg {
+	fill: var(--color-default);
+}
+fieldset .dynamic:focus::placeholder {
+	opacity: 0;
+}
+fieldset .dynamic:focus ~ legend {
+	padding: 0 0.5rem;
+	width: auto;
+	opacity: 1;
+}
+fieldset .dynamic:focus ~ legend label {
+	opacity: 1;
+}
+fieldset .dynamic:not(:placeholder-shown) ~ legend {
+	padding: 0 0.5rem;
+}
+fieldset .dynamic:not(:focus):placeholder-shown ~ legend {
+	padding: 0;
+	width: 0;
+	opacity: 0;
+}
+fieldset .dynamic:not(:focus):placeholder-shown ~ legend label {
+	opacity: 0;
+}
+fieldset .dynamic:not(select):valid:not(:placeholder-shown) ~ legend .valid {
 	display: block;
-	content: attr(data-replicated-value) '';
-	white-space: pre-wrap;
-	visibility: hidden;
-	border: 1px solid transparent;
-	margin-bottom: 1.5rem;
 }
-.text-field-wrapper.grow-wrap textarea {
+fieldset
+	.dynamic:not(select):invalid:not(:focus):not(:placeholder-shown)
+	~ legend
+	.invalid {
+	display: block;
+}
+fieldset
+	.dynamic:not(select):invalid:not(:focus):not(:placeholder-shown)
+	~ legend
+	.error-message {
+	display: block;
+}
+fieldset
+	.dynamic:not(select):invalid:not(:focus):not(:placeholder-shown)
+	~ legend
+	.label {
+	display: none;
+}
+fieldset textarea {
+	font: inherit;
 	resize: none;
 }
-.text-field-wrapper.grow-wrap > textarea,
-.text-field-wrapper.grow-wrap::after {
-	padding: 0.9rem 0.5rem 0.5rem 0.5rem;
-	min-height: 5rem;
-	font: inherit;
-	grid-area: 1/1/2/2;
+fieldset select {
+	margin-left: -2px;
+	margin-bottom: -10px;
+	padding-bottom: 10px;
+	margin-right: -0.75rem;
 }
-.text-field-wrapper.grow-wrap .icon {
-	top: 1.5rem;
-}
-.text-field-wrapper.has-icon input,
-.text-field-wrapper.has-icon textarea,
-.text-field-wrapper.has-icon select,
-.text-field-wrapper.has-icon.grow-wrap:after {
-	padding-left: 2.25rem;
+fieldset input[type='file'] ~ legend .valid,
+fieldset input[type='file'] ~ legend .invalid,
+fieldset input[type='file'] ~ legend .error-message {
+	display: none !important;
 }
 .option-label {
-	display: block;
 	margin-bottom: 0.5rem;
 }
 .option {
@@ -421,10 +413,11 @@ form button[type='submit'] {
 .option input[type='radio'] {
 	margin-right: 0.5rem;
 }
-.option:not(:last-child) {
+.option:not(:last-of-type) {
 	margin-bottom: 0.5rem;
 }
 
+/* blatantly stolen */
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
 	input[type='checkbox'],
 	input[type='radio'] {

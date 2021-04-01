@@ -57,4 +57,4 @@
 	css="https://unpkg.com/fullcalendar@5.6.0/main.min.css"
 />
 
-<div id="blok-{blok._uid}" use:editable={blok} />
+<div class="calendar" id="blok-{blok._uid}" use:editable={blok} />

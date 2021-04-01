@@ -9,11 +9,11 @@
 </script>
 
 <Link
-	{blok}
 	classes="button colors {blok.class} {blok.icon && blok.text
 		? 'pad-icon'
 		: ''}"
 	styles={styles(blok)}
+	{blok}
 >
 	{@html blok.icon}
 	{blok.text}

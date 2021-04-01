@@ -20,9 +20,9 @@
 </script>
 
 <div
-	id="b-{blok._uid}"
-	class={/[0-9]+\/+[0-9]/gm.test(blok.ratio) ? 'ratio-container' : ''}
+	class="code {/[0-9]+\/+[0-9]/gm.test(blok.ratio) ? 'ratio-container' : ''}"
 	style="padding-top: {ratio(blok.ratio)}"
+	id="b-{blok._uid}"
 	use:editable={blok}
 >
 	{@html blok.html.replace('iframe', "iframe loading='lazy'")}

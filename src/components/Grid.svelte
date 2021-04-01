@@ -8,9 +8,9 @@
 </script>
 
 <div
-	id="b-{blok._uid}"
 	class="grid {blok.class}"
 	style="gap: {blok.gap * 0.25}rem; align-items: {blok.alignment}; {blok.style}"
+	id="b-{blok._uid}"
 	use:editable={blok}
 >
 	{#each blok.content as blok}

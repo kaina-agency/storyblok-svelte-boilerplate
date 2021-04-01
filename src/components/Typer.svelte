@@ -31,7 +31,7 @@
 
 <Resource js="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js" />
 
-<div use:editable={blok} class={blok.class} style={blok.style}>
+<div class={blok.class} style={blok.style} use:editable={blok}>
 	{@html `<${blok.tag}><span class="typer"></span><${blok.tag}>`}
 	<div id="typed-strings">
 		{@html resolver.render(blok.text)}

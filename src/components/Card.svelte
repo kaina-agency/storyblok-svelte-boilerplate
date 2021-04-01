@@ -14,7 +14,7 @@
 	}
 </script>
 
-<Link {blok} classes="card colors {classes(blok)}" styles={styles(blok)}>
+<Link classes="card colors {classes(blok)}" styles={styles(blok)} {blok}>
 	<div class="card-container {blok.horizontal_layout ? 'row' : ''}">
 		<div class="card-media">
 			{#each blok.media as blok}
