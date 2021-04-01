@@ -59,13 +59,6 @@
 	}
 </script>
 
-{#if renderText(blok).highlight}
-	<Resource
-		js="https://unpkg.com/highlightjs@9.16.2/highlight.pack.min.js"
-		css="https://unpkg.com/highlightjs@9.16.2/styles/atom-one-dark.css"
-	/>
-{/if}
-
 <div
 	class="text {blok.class}"
 	style="color: {blok.color}; text-align:{blok.alignment}; {blok.style}"
@@ -74,3 +67,10 @@
 >
 	{@html renderText(blok).html}
 </div>
+
+{#if renderText(blok).highlight}
+	<Resource
+		js="https://unpkg.com/highlightjs@9.16.2/highlight.pack.min.js"
+		css="https://unpkg.com/highlightjs@9.16.2/styles/atom-one-dark.css"
+	/>
+{/if}
