@@ -315,12 +315,12 @@ fieldset legend label svg {
 }
 fieldset legend label .valid {
 	fill: green;
-	margin-left: 0.5em;
+	margin-left: 0.25em;
 	display: none;
 }
 fieldset legend label .invalid {
 	fill: red;
-	margin-right: 0.5em;
+	margin-right: 0.25em;
 	display: none;
 }
 fieldset legend label .error-message {
@@ -348,7 +348,7 @@ fieldset .dynamic:focus::placeholder {
 	opacity: 0;
 }
 fieldset .dynamic:focus ~ legend {
-	padding: 0 0.5rem;
+	padding: 0 0.25rem;
 	width: auto;
 	opacity: 1;
 }
@@ -356,7 +356,7 @@ fieldset .dynamic:focus ~ legend label {
 	opacity: 1;
 }
 fieldset .dynamic:not(:placeholder-shown) ~ legend {
-	padding: 0 0.5rem;
+	padding: 0 0.25rem;
 }
 fieldset .dynamic:not(:focus):placeholder-shown ~ legend {
 	padding: 0;
