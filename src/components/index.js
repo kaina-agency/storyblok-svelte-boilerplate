@@ -6,6 +6,7 @@ import Calendar from './Calendar.svelte'
 import Card from './Card.svelte'
 import Code from './Code.svelte'
 import Container from './Container.svelte'
+import Dropdown from './Dropdown.svelte'
 import Font from './Font.svelte'
 import Form from './Form.svelte'
 import FormField from './FormField.svelte'
@@ -31,6 +32,7 @@ const Components = {
 	Card: Card,
 	Code: Code,
 	Container: Container,
+	Dropdown: Dropdown,
 	Font: Font,
 	Form: Form,
 	FormField: FormField,

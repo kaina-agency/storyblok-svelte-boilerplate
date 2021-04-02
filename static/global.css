@@ -260,6 +260,40 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 	display: flex;
 }
 
+/* Dropdown.svelte */
+.dropdown {
+	display: inline-block;
+}
+.dropdown summary {
+	display: block;
+	cursor: pointer;
+	outline: none;
+}
+.dropdown summary::-webkit-details-marker {
+	display: none;
+}
+.dropdown {
+	position: relative;
+}
+.dropdown-content {
+	position: absolute;
+	top: calc(100% + 0.5rem);
+	z-index: 10;
+}
+.dropdown.right .dropdown-content {
+	right: 0;
+}
+.dropdown.right .dropdown-content-close {
+	left: 0;
+}
+.dropdown.fit .dropdown-content {
+	left: 0;
+	right: 0;
+}
+.dropdown.fit .dropdown-content-close {
+	display: none;
+}
+
 /* Form.svelte */
 form button[type='submit'] {
 	border: none;
@@ -619,110 +653,6 @@ select:-webkit-autofill:focus {
 /* Masonry.svelte */
 .__grid--masonry {
 	padding: 0 !important;
-}
-
-/* Modal.svelte */
-.modal,
-.menu {
-	display: inline-block;
-}
-.modal summary,
-.menu summary {
-	display: block;
-	cursor: pointer;
-	outline: none;
-}
-.modal summary::-webkit-details-marker,
-.menu summary::-webkit-details-marker {
-	display: none;
-}
-.modal-content-close,
-.menu-content-close {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 0;
-	width: 0;
-	padding: 0;
-	border: 0;
-	background: transparent;
-}
-
-.modal[open] summary:before,
-.modal-container {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 30;
-}
-.modal[open] summary:before {
-	content: '';
-}
-.modal-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: rgba(0, 0, 0, 0.5);
-	pointer-events: none;
-	cursor: pointer;
-}
-.modal-content {
-	position: relative;
-	width: 600px;
-	max-width: 80vw;
-	max-height: 80vh;
-	pointer-events: auto;
-	filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
-	cursor: auto;
-}
-.modal[open] summary ~ .modal-container {
-	animation: fadeIn 0.25s ease;
-}
-.modal[open] summary ~ .modal-container .modal-content {
-	animation: scaleIn 0.25s ease;
-}
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-@keyframes scaleIn {
-	0% {
-		transform: scale(0.5);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
-
-.menu {
-	position: relative;
-}
-.menu-content {
-	position: absolute;
-	top: calc(100% + 0.5rem);
-	z-index: 10;
-}
-.menu.right .menu-content {
-	right: 0;
-}
-.menu.right .menu-content-close {
-	left: 0;
-}
-.menu.fit .menu-content {
-	left: 0;
-	right: 0;
-}
-.menu.fit .menu-content-close {
-	display: none;
 }
 
 /* Slider.svelte */

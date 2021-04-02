@@ -19,6 +19,7 @@
 		"polka": "0.5.2",
 		"sirv": "^1.0.1",
 		"storyblok-js-client": "^2.5.1",
+		"svelte-accessible-dialog": "^2.1.2",
 		"tua-body-scroll-lock": "^1.2.1",
 		"webfontloader": "^1.6.28"
 	},
