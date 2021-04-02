@@ -418,7 +418,8 @@ fieldset
 	.dynamic:not(select):invalid:not(:focus):not(:placeholder-shown)
 	~ legend
 	.label {
-	display: none;
+	width: 0;
+	opacity: 0;
 }
 fieldset textarea {
 	font: inherit;
