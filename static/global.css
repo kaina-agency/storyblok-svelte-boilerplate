@@ -44,6 +44,18 @@ button:focus:not(:focus-visible) {
 	width: 100%;
 	height: 100%;
 }
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
 .text-left {
 	text-align: left;
 }
@@ -175,8 +187,14 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 	height: 1.5em;
 	width: 1.5em;
 }
-.button.pad-icon svg {
-	margin-right: 0.5rem;
+.button.left .button-text:not(.sr-only) {
+	margin-left: 0.5em;
+}
+.button.right .button-text:not(.sr-only) {
+	margin-right: 0.5em;
+}
+.button.right {
+	flex-direction: row-reverse;
 }
 
 /* Calendar.svelte */
@@ -418,8 +436,16 @@ fieldset
 	.dynamic:not(select):invalid:not(:focus):not(:placeholder-shown)
 	~ legend
 	.label {
-	width: 0;
-	opacity: 0;
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
 }
 fieldset textarea {
 	font: inherit;
