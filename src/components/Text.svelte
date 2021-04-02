@@ -1,6 +1,6 @@
 <script>
 	import { afterUpdate } from 'svelte'
-	import RichTextResolver from 'storyblok-js-client/dist/richTextResolver'
+	import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.es'
 	import Resource from './Resource.svelte'
 	import { editable } from './utils'
 

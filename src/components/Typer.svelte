@@ -1,7 +1,7 @@
 <script>
-	import { onMount, afterUpdate } from 'svelte'
-	import RichTextResolver from 'storyblok-js-client/dist/richTextResolver'
-	import Resource from './Resource.svelte'
+	import { onMount } from 'svelte'
+	import Typed from 'typed.js'
+	import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.es'
 	import { editable } from './utils'
 	export let blok
 	let resolver = new RichTextResolver()
@@ -35,5 +35,3 @@
 		{@html resolver.render(blok.text)}
 	</div>
 </div>
-
-<Resource js="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js" />
