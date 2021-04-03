@@ -1,9 +1,9 @@
 {
 	"name": "storyblok-svelte-boilerplate",
-	"description": "An Sapper boilerplate to integrate with Storyblok Headless CMS",
+	"description": "A Sapper boilerplate to integrate with Storyblok Headless CMS",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "sapper dev --no-hot",
+		"dev": "ntl dev:exec sapper dev --no-hot",
 		"build": "sapper build",
 		"start": "node __sapper__/build",
 		"export": "sapper export --entry editor",
@@ -16,8 +16,10 @@
 		"autosize": "^4.0.2",
 		"axios": "^0.21.1",
 		"compression": "^1.7.1",
+		"dotenv": "^8.2.0",
 		"lodash": "^4.17.21",
 		"polka": "0.5.2",
+		"sapper-environment": "^1.0.1",
 		"sirv": "^1.0.1",
 		"storyblok-js-client": "^3.3.1",
 		"svelte-accessible-dialog": "^2.1.2",

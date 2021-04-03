@@ -1,14 +1,15 @@
-const webpack = require('webpack');
-const path = require('path');
-const config = require('sapper/config/webpack.js');
-const pkg = require('./package.json');
+const sapperEnv = require('sapper-environment')
+const webpack = require('webpack')
+const path = require('path')
+const config = require('sapper/config/webpack.js')
+const pkg = require('./package.json')
 
-const mode = process.env.NODE_ENV;
-const dev = mode === 'development';
+const mode = process.env.NODE_ENV
+const dev = mode === 'development'
 
-const alias = { svelte: path.resolve('node_modules', 'svelte') };
-const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
-const mainFields = ['svelte', 'module', 'browser', 'main'];
+const alias = { svelte: path.resolve('node_modules', 'svelte') }
+const extensions = ['.mjs', '.js', '.json', '.svelte', '.html']
+const mainFields = ['svelte', 'module', 'browser', 'main']
 
 module.exports = {
 	client: {
@@ -24,22 +25,23 @@ module.exports = {
 						options: {
 							dev,
 							hydratable: true,
-							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
-						}
-					}
-				}
-			]
+							hotReload: false, // pending https://github.com/sveltejs/svelte/issues/2377
+						},
+					},
+				},
+			],
 		},
 		mode,
 		plugins: [
 			// pending https://github.com/sveltejs/svelte/issues/2377
 			// dev && new webpack.HotModuleReplacementPlugin(),
 			new webpack.DefinePlugin({
+				...sapperEnv(),
 				'process.browser': true,
-				'process.env.NODE_ENV': JSON.stringify(mode)
+				'process.env.NODE_ENV': JSON.stringify(mode),
 			}),
 		].filter(Boolean),
-		devtool: dev && 'inline-source-map'
+		devtool: dev && 'inline-source-map',
 	},
 
 	server: {
@@ -57,21 +59,21 @@ module.exports = {
 						options: {
 							css: false,
 							generate: 'ssr',
-							dev
-						}
-					}
-				}
-			]
+							dev,
+						},
+					},
+				},
+			],
 		},
 		mode: process.env.NODE_ENV,
 		performance: {
-			hints: false // it doesn't matter if server.js is large
-		}
+			hints: false, // it doesn't matter if server.js is large
+		},
 	},
 
 	serviceworker: {
 		entry: config.serviceworker.entry(),
 		output: config.serviceworker.output(),
-		mode: process.env.NODE_ENV
-	}
-};
+		mode: process.env.NODE_ENV,
+	},
+}
