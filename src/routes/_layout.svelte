@@ -6,7 +6,9 @@
 	import getComponent from '../components'
 
 	export async function preload(page, session) {
-		let lang = page.path.startsWith('/es/') ? 'es/' : ''
+		let lang = ''
+		if (page.path.startsWith('/es/')) lang = 'es/'
+		if (page.path.startsWith('/fr/')) lang = 'fr/'
 		const response = await client.get(`cdn/stories/${lang}global`, reqConfig)
 		return { story: response.data.story || {} }
 	}

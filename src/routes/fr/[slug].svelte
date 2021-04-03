@@ -1,0 +1,27 @@
+<script context="module">
+	import client, {
+		defaultRequestConfig as reqConfig,
+	} from '../../storyblokClient'
+	import getComponent from '../../components'
+
+	export async function preload(page) {
+		const { slug } = page.params
+		const response = await client.get('cdn/stories/fr/' + slug, reqConfig)
+		return { story: response.data.story || {} }
+	}
+</script>
+
+<script>
+	export let story = {}
+</script>
+
+<svelte:head>
+	<title>{story.name}</title>
+</svelte:head>
+
+{#if story.content.component}
+	<svelte:component
+		this={getComponent(story.content.component)}
+		blok={story.content}
+	/>
+{/if}
