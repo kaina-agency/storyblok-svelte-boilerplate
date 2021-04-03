@@ -22,7 +22,6 @@
 		"storyblok-js-client": "^3.3.1",
 		"svelte-accessible-dialog": "^2.1.2",
 		"tua-body-scroll-lock": "^1.2.1",
-		"typed.js": "^2.0.12",
 		"webfontloader": "^1.6.28"
 	},
 	"devDependencies": {
