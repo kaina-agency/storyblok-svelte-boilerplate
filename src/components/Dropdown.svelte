@@ -4,7 +4,7 @@
 	import { editable } from './utils'
 	import getComponent from './index'
 	export let blok
-	let el, position
+	let el, content, position
 
 	function toggle() {
 		el.open = !el.open
@@ -22,14 +22,10 @@
 		window.addEventListener('resize', debounce(menuPosition, 500))
 		// click outside closes dropdown
 		window.addEventListener('click', (e) => {
-			if (el.open) {
-				if (!e.path.includes(el)) {
-					toggle()
-				}
-			}
+			if (el.open && !content.contains(e.target)) toggle()
 		})
 		// any el.close closes dropdown
-		let dynamicCloseButton = el.querySelector('.close')
+		let dynamicCloseButton = content.querySelector('.close')
 		if (dynamicCloseButton) {
 			dynamicCloseButton.style.cursor = 'pointer'
 			dynamicCloseButton.addEventListener('click', () => {
@@ -45,7 +41,7 @@
 			<svelte:component this={getComponent(blok.component)} {blok} />
 		{/each}
 	</summary>
-	<div class="dropdown-content">
+	<div class="dropdown-content" bind:this={content}>
 		{#each blok.content as blok}
 			<svelte:component this={getComponent(blok.component)} {blok} />
 		{/each}
