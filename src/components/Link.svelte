@@ -29,7 +29,7 @@
 		style={styles}
 		href={link(blok.action).href}
 		aria-label={link(blok.action).aria}
-		rel={link(blok.action).prefetch ? 'prefetch' : ''}
+		sapper:prefetch
 		on:click={blok.ripple ? createRipple : undefined}
 		use:editable={blok}
 	>
