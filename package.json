@@ -6,11 +6,7 @@
 		"dev": "ntl dev:exec sapper dev --no-hot",
 		"build": "sapper build",
 		"start": "node __sapper__/build",
-		"export": "sapper export --entry editor",
-		"deploy": "sapper export --entry editor && ntl deploy --prod",
-		"cy:run": "cypress run",
-		"cy:open": "cypress open",
-		"test": "run-p --race dev cy:run"
+		"export": "sapper export --entry editor"
 	},
 	"dependencies": {
 		"autosize": "^4.0.2",

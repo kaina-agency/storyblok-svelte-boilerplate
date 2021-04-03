@@ -5,8 +5,9 @@
 	import Color from '../components/Color.svelte'
 	import getComponent from '../components'
 
-	export async function preload() {
-		const response = await client.get('cdn/stories/global', reqConfig)
+	export async function preload(page, session) {
+		let lang = page.path.startsWith('/es/') ? 'es/' : ''
+		const response = await client.get(`cdn/stories/${lang}global`, reqConfig)
 		return { story: response.data.story || {} }
 	}
 </script>
@@ -62,11 +63,11 @@
 
 <svelte:head>
 	<!-- Standard -->
-	<!-- <title>{story.content.site_meta.title || story.name}</title>
+	<title>{story.content.site_meta.title || story.name}</title>
 	<meta name="title" content={story.content.site_meta.title || story.name} />
-	<meta name="description" content={story.content.site_meta.description} /> -->
+	<meta name="description" content={story.content.site_meta.description} />
 	<!-- Open Graph -->
-	<!-- <meta property="og:type" content="website" />
+	<meta property="og:type" content="website" />
 	<meta
 		property="og:title"
 		content={story.content.site_meta.title || story.name}
@@ -74,17 +75,38 @@
 	<meta
 		property="og:description"
 		content={story.content.site_meta.description}
-	/> -->
+	/>
 	<!-- Twitter -->
-	<!-- <meta
+	<meta
 		property="twitter:title"
 		content={story.content.site_meta.title || story.name}
 	/>
 	<meta
 		property="twitter:description"
 		content={story.content.site_meta.description}
-	/> -->
+	/>
 	<!-- Theme -->
+	{#if story.content.favicon.filename.endsWith('svg')}
+		<link
+			rel="icon"
+			href={story.content.favicon.filename}
+			type="image/svg+xml"
+		/>
+	{:else if story.content.favicon.filename}
+		<link
+			rel="icon"
+			href={story.content.favicon.filename.replace(
+				'https://a.storyblok.com',
+				'https://img2.storyblok.com/32x32/filters:format(png):quality(50)'
+			)}
+		/>
+	{/if}
+	{#if story.content.apple_touch_icon.filename}
+		<link
+			rel="apple-touch-icon"
+			href={story.content.apple_touch_icon.filename}
+		/>
+	{/if}
 	{#each ['primary', 'secondary', 'gray', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink'] as color}
 		<Color color={story.content[color]} colorName={color} />
 	{/each}
