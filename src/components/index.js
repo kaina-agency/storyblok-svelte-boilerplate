@@ -21,6 +21,7 @@ import Page from './Page.svelte'
 import Sidebar from './Sidebar.svelte'
 import Slider from './Slider.svelte'
 import Spacer from './Spacer.svelte'
+import Tabs from './Tabs.svelte'
 import Text from './Text.svelte'
 import Typer from './Typer.svelte'
 import Video from './Video.svelte'
@@ -47,6 +48,7 @@ const Components = {
 	Sidebar: Sidebar,
 	Slider: Slider,
 	Spacer: Spacer,
+	Tabs: Tabs,
 	Text: Text,
 	Typer: Typer,
 	Video: Video,

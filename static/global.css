@@ -29,7 +29,10 @@ button:focus:not(:focus-visible) {
 	color: var(--text_color);
 	border: 1px solid var(--border_color);
 }
-.colors:hover {
+.colors:hover,
+.colors:focus,
+button:focus > div.colors,
+button[role='tab'][aria-selected='true'] > div.colors {
 	background: var(--hover_color, var(--color));
 	color: var(--hover_text_color, var(--text_color));
 	border: 1px solid var(--hover_border_color, var(--border_color));
