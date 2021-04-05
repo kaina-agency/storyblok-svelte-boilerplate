@@ -1,11 +1,11 @@
 <script>
-	// import { onMount } from 'svelte'
+	import { onMount } from 'svelte'
 	import { editable } from './utils'
-	// let debounce = require('lodash/debounce')
+	let debounce = require('lodash/debounce')
 
 	export let blok
 	let el
-	// let width = 0
+	let width = 0
 
 	function style(b) {
 		let filters = `filter: brightness(${b.brightness}) contrast(${b.contrast}) saturate(${b.saturation});`
@@ -28,36 +28,26 @@
 			: ''
 		let smart = b.fit === 'smart' && !b.image.focus ? 'smart/' : ''
 		let grayscale = b.grayscale ? ':grayscale()' : ''
-		if (b.image.filename && b.image.filename.endsWith('.svg')) {
+		if (w && b.image.filename && b.image.filename.endsWith('.svg')) {
 			return b.image.filename
-		} else if (b.image.filename) {
+		} else if (w && b.image.filename) {
 			return `https://img2.storyblok.com/${fit}${w}x${height}/${smart}filters:format(webp):fill(transparent):quality(${b.quality}):focal(${b.image.focus})${grayscale}${image}`
-		} else {
+		} else if (w) {
 			return `https://picsum.photos/seed/{${b._uid}}picsum/${w}/${height}.webp`
 		}
 	}
 
-	function srcset(b) {
-		let srcset = []
-		if (!b.width || b.image.filename.endsWith('.svg')) {
-			for (let i = 1; i <= 20; i++) {
-				srcset.push(src(b, i * 100) + (' ' + i * 100 + 'w'))
-			}
+	function setWidth() {
+		let perfectWidth =
+			Math.round((el.clientWidth * devicePixelRatio) / 100) * 100
+		if (perfectWidth !== 0 && perfectWidth > width) {
+			width = perfectWidth
+		} else {
+			width = blok.width || 600
 		}
-		return srcset.join(', ')
 	}
 
-	// function setWidth() {
-	// 	let perfectWidth =
-	// 		Math.round((el.clientWidth * devicePixelRatio) / 100) * 100
-	// 	if (perfectWidth !== 0 && perfectWidth > width) {
-	// 		width = perfectWidth
-	// 	} else {
-	// 		width = blok.width || 600
-	// 	}
-	// }
-
-	// onMount(setWidth)
+	onMount(setWidth)
 </script>
 
 <div
@@ -65,19 +55,19 @@
 	style="{style(blok)} {blok.width > 0 ? `width: ${blok.width}px` : ''}"
 	bind:this={el}
 >
-	<!-- {#if width > 0} -->
-	<img
-		src={src(blok, 600)}
-		srcset={srcset(blok)}
-		alt=""
-		loading="lazy"
-		width={blok.width || '100%'}
-		use:editable={blok}
-	/>
-	<!-- {/if} -->
+	{#if width > 0}
+		<img
+			src={src(blok, width)}
+			alt=""
+			loading="lazy"
+			width={blok.width || '100%'}
+			use:editable={blok}
+		/>
+	{/if}
 </div>
 
-<!-- <svelte:window on:resize={debounce(setWidth, 500)} /> -->
+<svelte:window on:resize={debounce(setWidth, 500)} />
+
 <style>
 	.image {
 		position: relative;
