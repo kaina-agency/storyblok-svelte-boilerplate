@@ -60,7 +60,8 @@
 			src={src(blok, width)}
 			alt=""
 			loading="lazy"
-			width={blok.width || '100%'}
+			height="auto"
+			width={blok.width ? blok.width : '100%'}
 			use:editable={blok}
 		/>
 	{/if}
