@@ -3,7 +3,7 @@
 	"description": "A Sapper boilerplate to integrate with Storyblok Headless CMS",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "ntl dev:exec sapper dev --no-hot",
+		"dev": "ntl dev:exec sapper dev",
 		"build": "sapper build",
 		"start": "node __sapper__/build",
 		"export": "sapper export --entry editor"
