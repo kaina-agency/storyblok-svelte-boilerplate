@@ -982,6 +982,7 @@ code {
 	right: -1px !important;
 	left: unset !important;
 	font-family: sans-serif !important;
+	border-bottom-left-radius: 0.25rem;
 }
 .storyblok__overlay {
 	border-width: 2px !important;
