@@ -70,5 +70,7 @@
 	:global(.indicator button[role='tab'][aria-selected='true'] > div.colors) {
 		border: none;
 		border-bottom: 2px solid var(--hover_border_color);
+		border-bottom-left-radius: 0;
+		border-bottom-left-radius: 0;
 	}
 </style>
