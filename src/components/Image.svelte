@@ -61,7 +61,7 @@
 			alt=""
 			loading="lazy"
 			height="auto"
-			width={blok.width ? blok.width : '100%'}
+			width={blok.width ? blok.width + 'px' : '100%'}
 			use:editable={blok}
 		/>
 	{/if}
