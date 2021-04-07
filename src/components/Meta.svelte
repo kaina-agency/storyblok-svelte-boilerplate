@@ -1,6 +1,6 @@
 <script>
-	export let meta
-	export let title
+	export let meta = undefined
+	export let title = undefined
 </script>
 
 <svelte:head>
