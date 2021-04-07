@@ -338,7 +338,7 @@ fieldset {
 fieldset:not(.textarea) {
 	align-items: center;
 }
-.helper fieldset {
+.grid fieldset {
 	margin-bottom: 0;
 }
 fieldset svg {
@@ -829,18 +829,29 @@ code {
 	.layout.show-sidebar-on-desktop .header .sidebar-button {
 		display: flex !important;
 	}
+	.layout.show-sidebar-on-desktop {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
 }
 @media (min-width: 1024px) {
 	.layout.show-sidebar-on-desktop {
-		min-height: 100vh;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 100vh;
+		overflow: hidden;
 		display: grid;
 		grid-template-columns: 300px 1fr;
 		grid-template-rows: auto 1fr auto;
 		gap: 0px 0px;
-		grid-template-areas: 'sidebar header' 'sidebar content' 'sidebar footer';
+		grid-template-areas: 'sidebar header' 'sidebar content';
 	}
 	.layout.show-sidebar-on-desktop.header-on-top {
-		grid-template-areas: 'header header' 'sidebar content' 'sidebar footer';
+		grid-template-areas: 'header header' 'sidebar content';
 	}
 	.layout.show-sidebar-on-desktop .header-container {
 		grid-area: header;
@@ -858,6 +869,12 @@ code {
 	}
 	.layout.show-sidebar-on-desktop .content {
 		grid-area: content;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+	}
+	.layout.show-sidebar-on-desktop .content .page {
+		flex-grow: 1;
 	}
 	.layout.show-sidebar-on-desktop .footer {
 		grid-area: footer;
@@ -934,7 +951,13 @@ code {
 }
 
 .content {
-	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.page {
+	flex-grow: 1;
 }
 
 /* StoryBlok UI */

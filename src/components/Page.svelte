@@ -1,13 +1,16 @@
 <script>
-  import getComponent from './index'
-  export let blok
+	import getComponent from './index'
+	export let blok
 </script>
 
-<div>
-  {#each blok.body as blok}
-    <svelte:component
-      blok={blok}
-      this={getComponent(blok.component)}
-    />
-  {/each}
+<div class="page">
+	{#each blok.body as blok}
+		<svelte:component this={getComponent(blok.component)} {blok} />
+	{/each}
 </div>
+
+<style>
+	.page {
+		margin-bottom: 2rem;
+	}
+</style>

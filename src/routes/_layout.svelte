@@ -137,13 +137,12 @@
 
 	<main class="content">
 		<slot />
+		{#if story.content.footer.length}
+			<footer class="footer">
+				{#each story.content.footer as blok}
+					<svelte:component this={getComponent(blok.component)} {blok} />
+				{/each}
+			</footer>
+		{/if}
 	</main>
-
-	{#if story.content.footer.length}
-		<footer class="footer">
-			{#each story.content.footer as blok}
-				<svelte:component this={getComponent(blok.component)} {blok} />
-			{/each}
-		</footer>
-	{/if}
 </div>
