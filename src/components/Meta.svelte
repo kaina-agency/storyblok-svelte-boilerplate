@@ -1,7 +1,6 @@
 <script>
 	export let meta
 	export let title
-	console.log(title)
 </script>
 
 <svelte:head>
