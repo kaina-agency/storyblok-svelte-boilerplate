@@ -1,5 +1,6 @@
 <script context="module">
 	import client, { defaultRequestConfig as reqConfig } from '../storyblokClient'
+	import Meta from '../components/Meta.svelte'
 	import getComponent from '../components'
 
 	export async function preload(page, session) {
@@ -15,9 +16,7 @@
 	export let story = {}
 </script>
 
-<svelte:head>
-	<title>{story.name}</title>
-</svelte:head>
+<Meta title={story.name} />
 
 {#if story.content.component}
 	<svelte:component

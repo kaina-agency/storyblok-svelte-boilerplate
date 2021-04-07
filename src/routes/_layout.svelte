@@ -3,6 +3,7 @@
 	import { lock, unlock } from 'tua-body-scroll-lock'
 	import client, { defaultRequestConfig as reqConfig } from '../storyblokClient'
 	import Color from '../components/Color.svelte'
+	import Meta from '../components/Meta.svelte'
 	import getComponent from '../components'
 
 	export async function preload(page, session) {
@@ -63,31 +64,9 @@
 	})
 </script>
 
+<Meta meta={story.content.site_meta} />
+
 <svelte:head>
-	<!-- Standard -->
-	<title>{story.content.site_meta.title || story.name}</title>
-	<meta name="title" content={story.content.site_meta.title || story.name} />
-	<meta name="description" content={story.content.site_meta.description} />
-	<!-- Open Graph -->
-	<meta property="og:type" content="website" />
-	<meta
-		property="og:title"
-		content={story.content.site_meta.title || story.name}
-	/>
-	<meta
-		property="og:description"
-		content={story.content.site_meta.description}
-	/>
-	<!-- Twitter -->
-	<meta
-		property="twitter:title"
-		content={story.content.site_meta.title || story.name}
-	/>
-	<meta
-		property="twitter:description"
-		content={story.content.site_meta.description}
-	/>
-	<!-- Theme -->
 	{#if story.content.favicon.filename.endsWith('svg')}
 		<link
 			rel="icon"

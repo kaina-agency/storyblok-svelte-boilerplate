@@ -1,5 +1,6 @@
 <script>
 	import getComponent from './index'
+	import Meta from '../components/Meta.svelte'
 	export let blok
 </script>
 
@@ -8,6 +9,8 @@
 		<svelte:component this={getComponent(blok.component)} {blok} />
 	{/each}
 </div>
+
+<Meta meta={blok.meta} />
 
 <style>
 	.page {
