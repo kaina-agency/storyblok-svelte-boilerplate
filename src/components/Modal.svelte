@@ -1,20 +1,21 @@
 <script>
 	import { onMount } from 'svelte'
-	import { DialogOverlay, DialogContent } from 'svelte-accessible-dialog'
 	import getComponent from './index'
 	export let blok
-	let isOpen
+	let el
+	let open = false
 
-	function open() {
-		isOpen = true
+	function openModal() {
+		open = true
+		el.querySelector('.modal_close').focus()
 	}
 
-	function close() {
-		isOpen = false
+	function closeModal() {
+		open = false
 	}
 
 	onMount(() => {
-		// auto-open settings
+		document.body.appendChild(el)
 		if (blok.auto_open_delay && blok.auto_open_delay > 0) {
 			if (blok.only_show_once) {
 				if (!localStorage.getItem(blok._uid)) {
@@ -28,59 +29,81 @@
 	})
 </script>
 
-<button class="modal-open" on:click={open}>
+<button class="modal_open" on:click={openModal}>
 	{#each blok.open as blok}
 		<svelte:component this={getComponent(blok.component)} {blok} />
 	{/each}
 </button>
 
-<DialogOverlay {isOpen} onDismiss={close} class="modal-overlay">
-	<DialogContent aria-label={blok.accessible_label} class="modal">
-		<button class="modal-close" on:click={close}>
+<div
+	class="modal {open ? 'open' : 'closed'}"
+	aria-hidden={open === true}
+	bind:this={el}
+>
+	<div class="modal_backdrop" on:click={closeModal} />
+	<div class="modal_content">
+		<button class="modal_close" on:click={closeModal}>
 			{#each blok.close as blok}
 				<svelte:component this={getComponent(blok.component)} {blok} />
 			{/each}
 		</button>
-		<div class="modal-content">
-			{#each blok.content as blok}
-				<svelte:component this={getComponent(blok.component)} {blok} />
-			{/each}
-		</div>
-	</DialogContent>
-</DialogOverlay>
+		{#each blok.content as blok}
+			<svelte:component this={getComponent(blok.component)} {blok} />
+		{/each}
+	</div>
+</div>
 
 <style>
-	.modal-open,
-	.modal-close {
+	.modal_open,
+	.modal_close {
 		padding: 0;
-		background: none;
 		border: none;
+		background: none;
 	}
-	.modal-close {
+	.modal,
+	.modal_backdrop {
+		position: fixed;
+		z-index: 40;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+	.modal_backdrop {
+		cursor: pointer;
+	}
+	.modal {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: opacity 0.25s;
+		pointer-events: none;
+	}
+	.modal.open {
+		opacity: 1;
+		pointer-events: all;
+	}
+	.modal_content {
+		position: relative;
+		max-width: 90vw;
+	}
+	.modal_close {
 		position: absolute;
 		top: 0;
 		right: 0;
-		height: 0;
 		width: 0;
+		height: 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		z-index: 5;
+		z-index: 50;
 	}
-	:global([data-svelte-dialog-overlay].modal-overlay) {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		z-index: 30;
+	:global(.modal_close .button) {
+		overflow: visible !important;
 	}
-	:global([data-svelte-dialog-content].modal) {
-		margin: 0;
-		padding: 0;
-		background: unset;
-		position: relative;
-		width: auto;
-	}
-	:global(.modal-content > *) {
-		max-width: 80vw;
+	.modal_close:focus:not(:focus-visible) {
+		outline: auto;
 	}
 </style>
