@@ -1,21 +1,46 @@
 <script>
 	import { onMount } from 'svelte'
+	import { editable } from './utils'
+	import { lock, unlock } from 'tua-body-scroll-lock'
 	import getComponent from './index'
 	export let blok
-	let el
+	let modal, openButton, closeButton
 	let open = false
 
+	function trapFocus() {
+		let focusable = modal.querySelectorAll('a, button, input, select, textarea')
+		focusable[0].addEventListener('keydown', (e) => {
+			if ((e.key === 'Tab') & e.shiftKey) {
+				e.preventDefault()
+				focusable[focusable.length - 1].focus()
+			}
+		})
+		focusable[focusable.length - 1].addEventListener('keydown', (e) => {
+			if ((e.key === 'Tab') & !e.shiftKey) {
+				e.preventDefault()
+				focusable[0].focus()
+			}
+		})
+	}
+
 	function openModal() {
+		lock(modal)
 		open = true
-		el.querySelector('.modal_close').focus()
+		closeButton.focus()
 	}
 
 	function closeModal() {
+		unlock(modal)
 		open = false
+		openButton.focus()
 	}
 
 	onMount(() => {
-		document.body.appendChild(el)
+		document.body.appendChild(modal) // move to end
+
+		trapFocus()
+
+		// auto-open
 		if (blok.auto_open_delay && blok.auto_open_delay > 0) {
 			if (blok.only_show_once) {
 				if (!localStorage.getItem(blok._uid)) {
@@ -29,20 +54,37 @@
 	})
 </script>
 
-<button class="modal_open" on:click={openModal}>
+<button
+	class="modal_open"
+	aria-label="Open dialog"
+	on:click={openModal}
+	bind:this={openButton}
+>
 	{#each blok.open as blok}
 		<svelte:component this={getComponent(blok.component)} {blok} />
 	{/each}
 </button>
 
 <div
-	class="modal {open ? 'open' : 'closed'}"
+	class="modal {open ? 'open' : ''}"
 	aria-hidden={open === true}
-	bind:this={el}
+	bind:this={modal}
 >
-	<div class="modal_backdrop" on:click={closeModal} />
-	<div class="modal_content">
-		<button class="modal_close" on:click={closeModal}>
+	<div class="modal_backdrop" on:click={closeModal} use:editable={blok} />
+	<div
+		class="modal_content"
+		role="dialog"
+		aria-labelledby="b-{blok._uid}-label"
+	>
+		<div class="modal-label sr-only" id="b-{blok._uid}-label">
+			{blok.accessible_label}
+		</div>
+		<button
+			class="modal_close"
+			aria-label="Close dialog"
+			on:click={closeModal}
+			bind:this={closeButton}
+		>
 			{#each blok.close as blok}
 				<svelte:component this={getComponent(blok.component)} {blok} />
 			{/each}
@@ -63,7 +105,6 @@
 	.modal,
 	.modal_backdrop {
 		position: fixed;
-		z-index: 40;
 		top: 0;
 		right: 0;
 		bottom: 0;
@@ -71,6 +112,7 @@
 	}
 	.modal_backdrop {
 		cursor: pointer;
+		z-index: 50;
 	}
 	.modal {
 		display: flex;
@@ -88,6 +130,7 @@
 	.modal_content {
 		position: relative;
 		max-width: 90vw;
+		z-index: 60;
 	}
 	.modal_close {
 		position: absolute;
@@ -98,11 +141,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		z-index: 50;
+		z-index: 70;
 	}
 	:global(.modal_close .button) {
 		overflow: visible !important;
 	}
+	.modal_open:focus:not(:focus-visible),
 	.modal_close:focus:not(:focus-visible) {
 		outline: auto;
 	}
