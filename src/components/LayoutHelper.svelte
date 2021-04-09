@@ -13,6 +13,7 @@
 
 <div
 	class="helper {hide(blok.hide_on_breakpoint)} {blok.class}"
+	style={blok.style}
 	id="b-{blok._uid}"
 	use:editable={blok}
 >
