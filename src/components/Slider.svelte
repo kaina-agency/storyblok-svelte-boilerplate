@@ -16,15 +16,19 @@
 	}
 
 	function prevSlide() {
-		slider.scrollLeft === 0
-			? (slider.scrollLeft = slider.scrollWidth)
-			: (slider.scrollLeft -= slider.childNodes[0].offsetWidth)
+		if (slider) {
+			slider.scrollLeft === 0
+				? (slider.scrollLeft = slider.scrollWidth)
+				: (slider.scrollLeft -= slider.childNodes[0].offsetWidth)
+		}
 	}
 
 	function nextSlide() {
-		slider.scrollLeft + slider.offsetWidth + 5 >= slider.scrollWidth
-			? (slider.scrollLeft = 0)
-			: (slider.scrollLeft += slider.childNodes[0].offsetWidth)
+		if (slider) {
+			slider.scrollLeft + slider.offsetWidth + 5 >= slider.scrollWidth
+				? (slider.scrollLeft = 0)
+				: (slider.scrollLeft += slider.childNodes[0].offsetWidth)
+		}
 	}
 
 	function autoplay() {

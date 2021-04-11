@@ -1,5 +1,5 @@
 <script>
-	import { afterUpdate } from 'svelte'
+	import { onMount } from 'svelte'
 	import { ratio, editable } from './utils'
 	export let blok
 
@@ -16,7 +16,7 @@
 		}
 	}
 
-	afterUpdate(runScripts)
+	onMount(runScripts)
 </script>
 
 <div

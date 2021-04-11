@@ -475,6 +475,7 @@ fieldset input[type='file'] ~ legend .error-message {
 }
 .option input[type='checkbox'],
 .option input[type='radio'] {
+	flex-shrink: 0;
 	margin-right: 0.5rem;
 }
 .option:not(:last-of-type) {
