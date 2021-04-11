@@ -78,7 +78,7 @@
 			rel="icon"
 			href={story.content.favicon.filename.replace(
 				'https://a.storyblok.com',
-				'https://img2.storyblok.com/32x32/filters:format(png):quality(50)'
+				'https://img2.storyblok.com/fit-in/32x32/filters:format(png):quality(50)'
 			)}
 		/>
 	{/if}

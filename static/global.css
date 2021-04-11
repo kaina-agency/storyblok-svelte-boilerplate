@@ -130,8 +130,9 @@ details.accordion summary {
 	align-items: center;
 	cursor: pointer;
 	outline: none;
+	list-style: none;
 }
-details.accordion summary:marker,
+details.accordion summary::marker,
 details.accordion summary::-webkit-details-marker {
 	display: none;
 }
