@@ -37,7 +37,7 @@
 	</a>
 {:else}
 	<div
-		class="{classes} Link"
+		class={classes}
 		style={styles}
 		on:click={blok.ripple ? createRipple : undefined}
 		use:editable={blok}

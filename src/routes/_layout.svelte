@@ -61,6 +61,20 @@
 				unlock(sidebar)
 			})
 		})
+
+		let links = document.querySelectorAll('.Link')
+		function highlightActive() {
+			links.forEach((link) => {
+				console.log(link.href)
+				if (link.href === window.location.href) {
+					link.classList.add('active')
+				} else link.classList.remove('active')
+			})
+		}
+		highlightActive()
+		window.addEventListener('click', () => {
+			highlightActive
+		})
 	})
 </script>
 
