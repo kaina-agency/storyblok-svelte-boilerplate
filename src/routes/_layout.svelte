@@ -72,9 +72,7 @@
 			})
 		}
 		highlightActive()
-		window.addEventListener('click', () => {
-			highlightActive
-		})
+		window.addEventListener('click', highlightActive)
 	})
 </script>
 
