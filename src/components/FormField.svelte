@@ -55,7 +55,13 @@
 				{option}
 			</label>
 		{/each}
-		<input name={fieldName(blok)} type="hidden" value={cBox.join(', ')} />
+		<input
+			name={fieldName(blok)}
+			required={blok.required}
+			class="sr-only"
+			aria-hidden
+			value={cBox.join(', ')}
+		/>
 	{:else if blok.type === 'radio'}
 		<div class="option-label">{blok.field_name}</div>
 		{#each blok.options.split('\n') as option, n}
@@ -111,12 +117,24 @@
 			<legend>
 				<label for="b-{blok._uid}">
 					<span class="label">{blok.field_name}</span>
-					<svg class="valid" width="24" height="24" viewBox="0 0 24 24">
+					<svg
+						class="valid"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						aria-hidden="true"
+					>
 						<path
 							d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"
 						/>
 					</svg>
-					<svg class="invalid" width="24" height="24" viewBox="0 0 24 24">
+					<svg
+						class="invalid"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						aria-hidden="true"
+					>
 						<path
 							d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"
 						/>
@@ -124,7 +142,7 @@
 					<span class="error-message">{blok.error_message}</span>
 				</label>
 			</legend>
-			<div class="icon">
+			<div class="icon" aria-hidden="true">
 				{@html blok.icon}
 			</div>
 		</fieldset>
