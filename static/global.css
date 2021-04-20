@@ -384,7 +384,8 @@ fieldset legend label .error-message {
 	color: red;
 	display: none;
 }
-fieldset .dynamic {
+fieldset .dynamic,
+fieldset input {
 	background: transparent;
 	width: 100%;
 	border: none;

@@ -4,6 +4,7 @@
 	import { editable } from './utils'
 	export let blok
 	let cBox = []
+	let el
 
 	function fieldName(b) {
 		return b.type === 'email'
@@ -36,6 +37,10 @@
 	onMount(() => {
 		if (blok.type === 'textarea') {
 			autosize(document.getElementById('b-' + blok._uid))
+		} else if (blok.type === 'date' && blok.lead_time) {
+			let day = new Date()
+			day.setDate(day.getDate() + Number(blok.lead_time))
+			el.min = day.toISOString().split('T')[0]
 		}
 	})
 </script>
@@ -76,13 +81,10 @@
 			</label>
 		{/each}
 	{:else}
-		<fieldset
-			class={blok.type}
-			onclick="this.querySelector('.dynamic').focus();"
-		>
+		<fieldset class={blok.type} onclick="this.querySelector('.field').focus();">
 			{#if blok.type === 'textarea'}
 				<textarea
-					class="dynamic"
+					class="field dynamic"
 					id="b-{blok._uid}"
 					name={fieldName(blok)}
 					placeholder={blok.field_name}
@@ -91,7 +93,7 @@
 				/>
 			{:else if blok.type === 'select'}
 				<select
-					class="dynamic"
+					class="field dynamic"
 					id="b-{blok._uid}"
 					name={fieldName(blok)}
 					required={blok.required}
@@ -102,7 +104,7 @@
 				</select>
 			{:else}
 				<input
-					class="dynamic"
+					class="field {blok.type !== 'date' ? 'dynamic' : ''}"
 					id="b-{blok._uid}"
 					name={fieldName(blok)}
 					pattern={blok.type === 'tel'
@@ -111,6 +113,7 @@
 					placeholder={blok.field_name}
 					required={blok.required}
 					type={blok.type}
+					bind:this={el}
 					on:input={blok.type === 'tel' ? phoneMask : undefined}
 				/>
 			{/if}
