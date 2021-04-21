@@ -9,7 +9,7 @@
 	function fieldName(b) {
 		return b.type === 'email'
 			? 'email'
-			: b.field_name.toLowerCase().replace(' ', ' ')
+			: b.field_name.toLowerCase().replace(/ /g, ' ')
 	}
 
 	function phoneMask(e) {
