@@ -129,7 +129,7 @@
 	}
 	.modal_content {
 		position: relative;
-		max-width: 90vw;
+		max-width: calc(100vw - 4rem);
 		z-index: 60;
 	}
 	.modal_close {
