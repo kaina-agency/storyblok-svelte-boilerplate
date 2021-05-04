@@ -268,10 +268,10 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 	display: flex;
 	align-items: center;
 }
-.card .card-content .text *:first-child {
+.card .card-content > .text *:first-child {
 	margin-top: 0;
 }
-.card .card-content .text *:last-child {
+.card .card-content > .text *:last-child {
 	margin-bottom: 0;
 }
 .card .card-divider {
