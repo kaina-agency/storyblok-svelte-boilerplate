@@ -28,7 +28,7 @@ export function link(action) {
 			let url = action.cached_url === 'home' ? '' : action.cached_url
 			let anchor = action.anchor ? '#' + action.anchor : ''
 			return {
-				href: url + '/' + anchor,
+				href: url + anchor,
 				aria: 'Go to page: ' + action.cached_url,
 				prefetch: true,
 			}
