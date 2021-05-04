@@ -25,7 +25,7 @@ export function colors(b) {
 export function link(action) {
 	if (action) {
 		if (action.linktype === 'story' && action.cached_url) {
-			let url = action.cached_url === 'home' ? '' : action.cached_url
+			let url = action.cached_url === 'home' ? '/' : action.cached_url
 			let anchor = action.anchor ? '#' + action.anchor : ''
 			return {
 				href: url + anchor,
