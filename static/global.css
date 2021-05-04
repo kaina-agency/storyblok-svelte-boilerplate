@@ -187,6 +187,7 @@ details.accordion:not([open]) + details.accordion:not([open]) {
 	text-transform: uppercase;
 	display: inline-flex;
 	align-items: center;
+	user-select: none;
 }
 .button svg {
 	fill: currentColor;
