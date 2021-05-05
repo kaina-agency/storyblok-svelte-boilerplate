@@ -26,5 +26,6 @@
 	{/if}
 	{#if image.filename}
 		<meta property="og:image" content={image.filename} />
+		<meta property="twitter:image" content={image.filename} />
 	{/if}
 </svelte:head>
