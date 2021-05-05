@@ -24,7 +24,7 @@
 		<meta property="og:title" content={title} />
 		<meta property="twitter:title" content={title} />
 	{/if}
-	{#if image.filename}
+	{#if image && image.filename}
 		<meta property="og:image" content={image.filename} />
 		<meta property="twitter:image" content={image.filename} />
 	{/if}
