@@ -16,6 +16,8 @@
 </script>
 
 <script>
+	import Storyblok from 'storyblok-js-client'
+
 	export let story = {}
 	let sidebarActive = false
 
@@ -75,7 +77,7 @@
 	})
 </script>
 
-<Meta meta={story.content.site_meta} />
+<Meta meta={story.content.site_meta} image={story.content.meta_image} />
 
 <svelte:head>
 	{#if story.content.favicon.filename.endsWith('svg')}

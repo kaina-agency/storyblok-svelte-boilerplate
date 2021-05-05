@@ -10,7 +10,7 @@
 	{/each}
 </div>
 
-<Meta meta={blok.meta} />
+<Meta meta={blok.meta} image={blok.meta_image} />
 
 <style>
 	.page {
