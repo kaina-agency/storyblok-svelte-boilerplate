@@ -801,24 +801,18 @@ code {
 	margin: 0 0.25rem;
 }
 .text .credit {
-	font-family: sans-serif;
+	font-family: arial;
+	font-weight: 700;
 	position: relative;
 	display: inline-block;
 	padding: 0 0.5rem;
 	margin-left: 0.25rem;
-	outline: 2px solid currentColor;
 	text-decoration: none;
-	text-transform: uppercase;
+	background: var(--text_color);
+	color: var(--color) !important;
 }
-.text .credit:hover:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: currentColor;
-	opacity: 0.2;
+.text .credit:hover {
+	opacity: 0.8;
 }
 
 /* Global Components */
