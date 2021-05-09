@@ -20,15 +20,15 @@
 		// dynamically set position
 		setTimeout(menuPosition, 500)
 		window.addEventListener('resize', debounce(menuPosition, 500))
-		// click outside and escape key closes dropdown
+		// click outside or escape key closes dropdown
 		window.addEventListener('click', (e) => {
 			if (el.open && !content.contains(e.target)) toggle()
 		})
 		window.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape' && el.open) el.open = false
 		})
-		// any el.close closes dropdown
-		let dynamicCloseButton = content.querySelector('.close')
+		// any a or .close closes dropdown
+		let dynamicCloseButton = content.querySelector('a, .close')
 		if (dynamicCloseButton) {
 			dynamicCloseButton.style.cursor = 'pointer'
 			dynamicCloseButton.addEventListener('click', () => {
