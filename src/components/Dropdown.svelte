@@ -28,7 +28,7 @@
 			if (e.key === 'Escape' && el.open) el.open = false
 		})
 		// any a or .close closes dropdown
-		let dynamicCloseButton = content.querySelector('a, .close')
+		let dynamicCloseButton = content.querySelectorAll('a, .close')
 		if (dynamicCloseButton) {
 			dynamicCloseButton.style.cursor = 'pointer'
 			dynamicCloseButton.addEventListener('click', () => {
