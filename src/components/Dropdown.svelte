@@ -11,30 +11,30 @@
 	}
 
 	function menuPosition() {
-		if (blok.menu_position === 'auto') {
-			position = el.offsetLeft < window.innerWidth / 2 ? 'left' : 'right'
-		} else position = blok.menu_position
+		position = el.offsetLeft < window.innerWidth / 2 ? 'left' : 'right'
 	}
 
 	onMount(() => {
 		// dynamically set position
-		setTimeout(menuPosition, 500)
-		window.addEventListener('resize', debounce(menuPosition, 500))
-		// click outside or escape key closes dropdown
+		if (blok.menu_position === 'auto') {
+			setTimeout(menuPosition, 500)
+			window.addEventListener('resize', debounce(menuPosition, 500))
+		} else position = blok.menu_position
+		// click outside closes dropdown
 		window.addEventListener('click', (e) => {
 			if (el.open && !content.contains(e.target)) toggle()
 		})
+		// escape key closes dropdown
 		window.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape' && el.open) el.open = false
 		})
 		// any a or .close closes dropdown
-		let dynamicCloseButton = content.querySelectorAll('a, .close')
-		if (dynamicCloseButton) {
-			dynamicCloseButton.style.cursor = 'pointer'
-			dynamicCloseButton.addEventListener('click', () => {
+		content.querySelectorAll('a.Link').forEach((el) => {
+			el.style.cursor = 'pointer'
+			el.addEventListener('click', () => {
 				toggle()
 			})
-		}
+		})
 	})
 </script>
 
