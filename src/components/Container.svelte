@@ -14,20 +14,14 @@
 	.container {
 		padding: 1rem 0.75rem;
 		margin: 0 auto;
-		transition: 0.25s;
 	}
 	@media (min-width: 768px) {
 		.container {
 			padding: 1rem;
-			max-width: 768px;
+			max-width: 80vw;
 		}
 	}
-	@media (min-width: 1024px) {
-		.container {
-			max-width: 1024px;
-		}
-	}
-	@media (min-width: 1280px) {
+	@media (min-width: 1600px) {
 		.container {
 			max-width: 1280px;
 		}
