@@ -952,6 +952,8 @@ code {
 	transform: translate3d(0, 0, 0);
 }
 
+/* main */
+
 .content {
 	display: flex;
 	flex-direction: column;
@@ -960,6 +962,12 @@ code {
 
 .page {
 	flex-grow: 1;
+}
+
+/* footer */
+
+.footer .card {
+	padding: 1rem 0;
 }
 
 /* StoryBlok UI */
