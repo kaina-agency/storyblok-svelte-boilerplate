@@ -26,6 +26,12 @@
 	<input type="hidden" name="_next" value={next} />
 	<input type="hidden" name="_template" value="box" />
 	<input type="text" name="_honey" style="display: none" />
+	<a
+		style="display: none;"
+		href={`${window.location.origin}/${blok.success_page.cached_url}`}
+	>
+		Success page, since sapper has to crawl every damn page.
+	</a>
 	{#each blok.content as blok}
 		<svelte:component this={getComponent(blok.component)} {blok} />
 	{/each}
